@@ -1,0 +1,31 @@
+.person {
+    font-size: 38px;
+    margin-right: 10px;
+}
+
+.input-group {
+    margin-bottom: 10px;
+}
+
+button{
+    margin-right: 10px;
+}
+
+:host{
+    display: flex;
+    justify-content: center;
+}
+
+nb-card{
+    width: 40%;
+}
+
+nb-card-header{
+    display: flex;
+    justify-content: center;
+}
+
+nb-card-body{
+    display: flex;
+    justify-content: center;
+}

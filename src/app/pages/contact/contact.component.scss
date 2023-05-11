@@ -1,0 +1,23 @@
+nb-card {
+    width: 50%;
+}
+
+nb-card-header{
+    display: flex;
+    justify-content: center;
+}
+
+nb-card-body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+}
+
+.icon_clip{
+    font-size: 34px;
+}

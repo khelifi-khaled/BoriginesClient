@@ -1,0 +1,20 @@
+<nb-card>
+    <nb-card-header>
+        <h1><nb-icon class="person" icon="person-outline"></nb-icon> Login</h1>
+    </nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="fg" (ngSubmit)="submit()">
+            <div class="input-group">
+                <input nbInput placeholder="Email *"  type="text">
+                <app-form-errors [control]="fg.get('email')"></app-form-errors>
+            </div>
+            <div class="input-group">
+                <input nbInput placeholder="Mot de Passe *"  type="password">
+                <app-form-errors [control]="fg.get('password')"></app-form-errors>
+            </div>
+            <div class="input-group">
+                <button nbButton type="submit" status="info"><nb-icon icon="person-done-outline"></nb-icon> Se connecter</button>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>

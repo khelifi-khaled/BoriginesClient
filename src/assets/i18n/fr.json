@@ -1,0 +1,27 @@
+{
+    "main" : {
+        "title": "Bienvenue sur mon site web dédié à Vincent Van Gogh dans le Borinage.",
+        "presentation": "Mon nom est Filip Depuydt, né à Ypres le 12 mars 1966 et élevé dans le village pittoresque de Kemmel au pied du Mont Kemmel.",
+        "history": "En 1991, j'ai quitté la Flandre occidentale pour m'installer dans le Borinage, dans la province du Hainaut. Depuis 2002, je suis guide sur le site  patrimonial mondial de l'UNESCO du Grand-Hornu (www.grand-hornu.eu).",
+        "history2": "Depuis 1991, je suis marié à Dominique Mailleux. Ensemble nous avons deux filles, Mathilde et Odile."
+    },
+    "nav" : {
+        "home": "Accueil",
+        "presentation": "Présentation",
+        "contact": "Contact",
+        "vangogh": "Van Gogh",
+        "history": "Histoire",
+        "life": "Sa vie",
+        "borinage": "Dans le Borinage",
+        "borigines": "Borigines",
+        "goals": "Objectifs",
+        "events": "Evenements",
+        "walks": "Promenades",
+        "parties": "Soirées",
+        "press": "Presse",
+        "blog": "Blog",
+        "login": "Se connecter",
+        "logout": "Se déconnecter",
+        "new": "Nouvel article"
+    }
+}

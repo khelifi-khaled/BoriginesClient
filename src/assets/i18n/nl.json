@@ -1,0 +1,27 @@
+{
+    "main" : {
+        "title": "Welkom op mijn website gewijd aan Vincent Van Gogh in de Borinage.",
+        "presentation": "Mijn naam is Filip Depuydt, geboren te Ieper (België) op 12 maart 1966, en opgegroeid in het schilderachtige dorpje Kemmel aan de voet van de Kemmelberg",
+        "history": "In 1991 ben ik van West-Vlaanderen verhuisd naar de Borinage in de provincie Henegouwen, en werk sinds 2002 als gids in de UNESCO werelderfgoedsite van de Grand-Hornu (www.grand-hornu.eu).",
+        "history2": "Sinds 1991 ben ik gehuwd met Dominique Mailleux.  Samen hebben wij twee dochters, Mathilde en Odile."
+    },
+    "nav" : {
+        "home": "Onthaal",
+        "presentation": "Voorstelling",
+        "contact": "Contact",
+        "vangogh": "Van Gogh",
+        "history": "Geschiedenis",
+        "life": "Zijn leven",
+        "borinage": "In de Borinage",
+        "borigines": "Borigines",
+        "goals": "Doelstellingen",
+        "events": "Gebeurtenissen",
+        "walks": "Wandelingen",
+        "parties": "Avonden",
+        "press": "Persartikel",
+        "blog": "Blog",
+        "login": "Login",
+        "logout": "Logout",
+        "new": "Nieuwe Artikel"
+    }
+}

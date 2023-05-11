@@ -1,0 +1,74 @@
+<!-- <div>
+    <p-button label="Accueil" styleClass="p-button-danger" routerLink="/main" styleClass="p-button-link"></p-button>
+    <p-button label="Login" routerLink="/login" styleClass="p-button-link"></p-button>
+</div> -->
+<div class="flex">
+    <div class="navbar">
+        <!-- Accueil -->
+        <div class="dropdown">
+            <button class="dropbtn" routerLink="/main">{{'nav.home' | translate}} 
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a routerLink="/main">{{'nav.presentation' | translate}}</a>
+              <a routerLink="/contact">{{'nav.contact' | translate}}</a>
+            </div>
+        </div> 
+        <!-- Van Gogh -->
+        <div class="dropdown">
+          <button class="dropbtn" routerLink="">{{'nav.vangogh' | translate}} 
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a routerLink="">{{'nav.history' | translate}}</a>
+            <a routerLink="">{{'nav.life' | translate}}</a>
+            <a routerLink="">{{'nav.borinage' | translate}}</a>
+          </div>
+        </div> 
+        <!-- Borigines -->
+        <div class="dropdown">
+            <button class="dropbtn" routerLink="/main">{{'nav.borigines' | translate}} 
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a routerLink="">{{'nav.presentation' | translate}}</a>
+              <a routerLink="">{{'nav.goals' | translate}}</a>
+            </div>
+        </div> 
+        <!-- Accueil -->
+        <div class="dropdown">
+            <button class="dropbtn" routerLink="/main">{{'nav.events' | translate}} 
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a routerLink="">{{'nav.walks' | translate}}</a>
+              <a routerLink="">{{'nav.parties' | translate}}</a>
+            </div>
+        </div> 
+        <!-- Presse -->
+        <a routerLink="">{{'nav.press' | translate}}</a>
+        <!-- Ancien Blog -->
+        <a href="https://vangoghborinage.canalblog.com/">{{'nav.blog' | translate}}</a>
+    </div>
+    <div class="navbar row" >
+      <div>
+            <!-- Languages -->
+            <a (click)="selectFR()">FR</a>
+            <a (click)="selectNL()">NL</a>
+            <a (click)="selectEN()">EN</a>
+      </div>    
+      <div *ngIf="1+1 === 1; else loggedin">
+          <!-- Login -->
+          <a routerLink="/login"><nb-icon icon="lock-outline"></nb-icon> {{'nav.login' | translate}}</a>
+      </div>
+        
+    </div>
+
+    <ng-template #loggedin>
+      <div>
+        <!-- Logout -->
+        <a routerLink="/post"><nb-icon icon="plus-outline"></nb-icon> {{'nav.new' | translate}}</a>
+        <a (click)="logout()"><nb-icon icon="power-outline"></nb-icon> {{'nav.logout' | translate}}</a>
+      </div>
+    </ng-template>
+</div>

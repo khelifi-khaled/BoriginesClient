@@ -1,0 +1,24 @@
+<ng-container *ngIf="control && (control.touched || control.dirty)">
+    <ng-container *ngIf="errors; else ok">
+    <nb-icon class="icon" icon="close-circle-outline" status="danger"></nb-icon>
+    <div class="text-red">
+        <div *ngIf="errors.required">* field required</div>
+        <div *ngIf="errors.maxlength">* too long (
+                {{ errors.maxlength.actualLength }}/{{ errors.maxlength.requiredLength }}
+            )</div>
+        <div *ngIf="errors.minlength">* too short (
+                {{ errors.minlength.actualLength }}/{{ errors.minlength.requiredLength }}
+            )</div>
+        <div *ngIf="errors.pattern">* invalid email</div>
+        <div *ngIf="errors.notMatching">* doesn't match</div>
+        <div *ngIf="errors.minAge">* invalid required age (
+                actual: {{ errors.minAge.actual }}, min: {{ errors.minAge.required }} 
+            )</div>
+        <div *ngIf="errors.minAge">* invalid NISS</div>
+    </div>
+    </ng-container>
+</ng-container>
+
+<ng-template #ok>
+    <nb-icon class="icon" icon="checkmark-circle-2-outline" status="success"></nb-icon>
+</ng-template>
