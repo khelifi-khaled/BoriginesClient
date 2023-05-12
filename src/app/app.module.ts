@@ -23,6 +23,7 @@ import { AlbumComponent } from './pages/album/album.component';
 import { UserComponent } from './pages/user/user.component';
 import { ListComponent } from './pages/user/pages/list/list.component';
 import { DetailsComponent } from './pages/user/pages/details/details.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { DetailsComponent } from './pages/user/pages/details/details.component';
     AlbumComponent,
     UserComponent,
     ListComponent,
-    DetailsComponent
+    DetailsComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

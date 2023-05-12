@@ -12,15 +12,15 @@ export class UserService {
 
   url: string = environment.baseUri + '/user';
 
-  private _userList$: BehaviorSubject<UserList[]> = new BehaviorSubject<UserList[]>([]);
-  private _userDetails$: BehaviorSubject<User|null> = new BehaviorSubject<User|null>(null);
+  private _userList$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
+  private _userSelected$: BehaviorSubject<User|null> = new BehaviorSubject<User|null>(null);
 
   get userList(){
     return this._userList$.asObservable();
   }
 
   get userDetails(){
-    return this._userDetails$.asObservable();
+    return this._userSelected$.asObservable();
   }
 
   constructor(
@@ -30,15 +30,13 @@ export class UserService {
   }
 
   getAll(){
-    return this._httpClient.get<UserList[]>(this.url + 'List', { reportProgress: true }).subscribe(list => {
+    return this._httpClient.get<User[]>(this.url, { reportProgress: true }).subscribe(list => {
       this._userList$.next(list);
     });
   }
 
-  get(id: number){
-    return this._httpClient.get<User>(this.url + '/' + id, { reportProgress: true }).subscribe(user => {
-      this._userDetails$.next(user);
-    })
+  toDetails(user: User){
+    this._userSelected$.next(user);
   }
 
 

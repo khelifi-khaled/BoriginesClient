@@ -6,6 +6,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { PostComponent } from './pages/post/post.component';
 import { AlbumComponent } from './pages/album/album.component';
 import { UserComponent } from './pages/user/user.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
@@ -15,6 +16,10 @@ const routes: Routes = [
   { path: 'post', component: PostComponent },
   { path: 'album', component: AlbumComponent },
   { path: 'user', component: UserComponent },
+
+  
+  //LAST PAGE - NOT FOUND
+  { path: '**', component: NotFoundComponent },
 ]
 
 @NgModule({

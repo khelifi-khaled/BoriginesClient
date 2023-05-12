@@ -1,10 +1,10 @@
 <nb-card>
     <nb-card-header>
-        <h1>List Users</h1>
+        <h3>List Users</h3>
     </nb-card-header>
     <nb-card-body>
         <nb-list>
-                <nb-list-item *ngFor="let user of userList; let i = index;" (click)="onClick(user.id)">
+                <nb-list-item *ngFor="let user of userList; let i = index;" (click)="onClick(user)">
                     {{ user.lastName|titlecase }} {{ user.firstName|titlecase }}
                 </nb-list-item>
         </nb-list>
