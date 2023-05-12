@@ -1,0 +1,66 @@
+{
+    "userList": [
+        {
+            "id": 1,
+            "lastName": "Depuydt",
+            "firstName": "Filip"
+        },
+        {
+            "id": 2,
+            "lastName": "Ly",
+            "firstName": "Khun"
+        },
+        {
+            "id": 3,
+            "lastName": "Smith",
+            "firstName": "John"
+        },
+        {
+            "id": 4,
+            "lastName": "Laloux",
+            "firstName": "Jean Michel"
+        },
+        {
+            "id": 4,
+            "lastName": "Khelifi",
+            "firstName": "Khaled"
+        }
+    ],
+    "user": [
+        {
+            "id": 1,
+            "lastName":"Depuydt",
+            "firstName":"Filip",
+            "isAdmin": true,
+            "email": "d.filip@borigines.be"
+        },
+        {
+            "id": 2,
+            "lastName":"Ly",
+            "firstName":"Khun",
+            "isAdmin": false,
+            "email": "l.khun@borigines.be"
+        },
+        {
+            "id": 3,
+            "lastName":"Smith",
+            "firstName":"John",
+            "isAdmin": false,
+            "email": "s.john@borigines.be"
+        },
+        {
+            "id": 4,
+            "lastName":"Laloux",
+            "firstName":"Jean Michel",
+            "isAdmin": false,
+            "email": "l.jmi@borigines.be"
+        },
+        {
+            "id": 5,
+            "lastName":"Khelifi",
+            "firstName":"Khaled",
+            "isAdmin": false,
+            "email": "kk@borigines.be"
+        }
+    ]
+}

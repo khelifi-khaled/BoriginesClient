@@ -22,6 +22,10 @@
         "blog": "Blog",
         "login": "Login",
         "logout": "Logout",
-        "new": "New Article"
+        "album": "Photo Book",
+        "connected": "Add",
+        "newArticle": "New Article",
+        "newAlbum": "New Album",
+        "user": "User Management"
     }
 }

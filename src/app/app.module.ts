@@ -8,7 +8,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MainComponent } from './pages/main/main.component';
 import { LoginComponent } from './pages/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbCardModule, NbButtonModule, NbIconModule, NbInputModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbCardModule, NbButtonModule, NbIconModule, NbInputModule, NbListModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormErrorsComponent } from './components/form-errors/form-errors.component';
@@ -16,7 +16,13 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { PostComponent } from './pages/post/post.component';
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { RichTextEditorModule, ToolbarService, LinkService, ImageService, HtmlEditorService } from "@syncfusion/ej2-angular-richtexteditor";
+// import { QuillModule } from "ngx-quill";
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { AlbumComponent } from './pages/album/album.component';
+import { UserComponent } from './pages/user/user.component';
+import { ListComponent } from './pages/user/pages/list/list.component';
+import { DetailsComponent } from './pages/user/pages/details/details.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +32,11 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     FormErrorsComponent,
     LoginComponent,
     ContactComponent,
-    PostComponent
+    PostComponent,
+    AlbumComponent,
+    UserComponent,
+    ListComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +49,12 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     NbLayoutModule,
     NbCardModule,
     NbIconModule,
+    // QuillModule.forRoot(),
+    RichTextEditorModule,
     FormsModule,
     ReactiveFormsModule,
     NbButtonModule,
+    NbListModule,
     NbInputModule,
     NbEvaIconsModule,
     TranslateModule.forRoot({
@@ -52,7 +65,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
       }
     }),
   ],
-  providers: [],
+  providers: [ToolbarService, LinkService, ImageService, HtmlEditorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

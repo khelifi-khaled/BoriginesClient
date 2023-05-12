@@ -4,9 +4,9 @@
 </div> -->
 <div class="flex">
     <div class="navbar">
-        <!-- Accueil -->
+        <!-- Home -->
         <div class="dropdown">
-            <button class="dropbtn" routerLink="/main">{{'nav.home' | translate}} 
+            <button class="dropbtn">{{'nav.home' | translate}} 
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
@@ -16,7 +16,7 @@
         </div> 
         <!-- Van Gogh -->
         <div class="dropdown">
-          <button class="dropbtn" routerLink="">{{'nav.vangogh' | translate}} 
+          <button class="dropbtn">{{'nav.vangogh' | translate}} 
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
@@ -27,7 +27,7 @@
         </div> 
         <!-- Borigines -->
         <div class="dropdown">
-            <button class="dropbtn" routerLink="/main">{{'nav.borigines' | translate}} 
+            <button class="dropbtn">{{'nav.borigines' | translate}} 
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
@@ -35,9 +35,9 @@
               <a routerLink="">{{'nav.goals' | translate}}</a>
             </div>
         </div> 
-        <!-- Accueil -->
+        <!-- Events -->
         <div class="dropdown">
-            <button class="dropbtn" routerLink="/main">{{'nav.events' | translate}} 
+            <button class="dropbtn">{{'nav.events' | translate}} 
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
@@ -45,9 +45,11 @@
               <a routerLink="">{{'nav.parties' | translate}}</a>
             </div>
         </div> 
-        <!-- Presse -->
+        <!-- Press -->
         <a routerLink="">{{'nav.press' | translate}}</a>
-        <!-- Ancien Blog -->
+        <!-- Press -->
+        <a routerLink="/album">{{'nav.album' | translate}}</a>
+        <!-- Blog -->
         <a href="https://vangoghborinage.canalblog.com/">{{'nav.blog' | translate}}</a>
     </div>
     <div class="navbar row" >
@@ -65,9 +67,38 @@
     </div>
 
     <ng-template #loggedin>
+      <div *ngIf="1+1 === 1; else isAdmin">
+        <!-- User -->
+
+        <div class="dropdown">
+          <button class="dropbtn">{{'nav.connected' | translate}} 
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a routerLink="/post">{{'nav.newArticle' | translate}}</a>
+            <a routerLink="/postAlbum">{{'nav.newAlbum' | translate}}</a>
+          </div>
+        </div> 
+
+        <a (click)="logout()"><nb-icon icon="power-outline"></nb-icon> {{'nav.logout' | translate}}</a>
+      </div>
+    </ng-template>
+
+    <ng-template #isAdmin>
       <div>
-        <!-- Logout -->
-        <a routerLink="/post"><nb-icon icon="plus-outline"></nb-icon> {{'nav.new' | translate}}</a>
+      <!-- Admin -->
+
+        <div class="dropdown">
+          <button class="dropbtn"><nb-icon icon="edit-outline"></nb-icon> {{'nav.connected' | translate}} 
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a routerLink="/post"><nb-icon icon="plus-outline"></nb-icon> {{'nav.newArticle' | translate}}</a>
+            <a routerLink="/album"><nb-icon icon="plus-outline"></nb-icon> {{'nav.newAlbum' | translate}}</a>
+            <a routerLink="/user"><nb-icon icon="person-outline"></nb-icon> {{'nav.user' | translate}}</a>
+          </div>
+        </div> 
+
         <a (click)="logout()"><nb-icon icon="power-outline"></nb-icon> {{'nav.logout' | translate}}</a>
       </div>
     </ng-template>

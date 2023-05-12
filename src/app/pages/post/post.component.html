@@ -1,1 +1,18 @@
-<p>post works!</p>
+<p>post works</p>
+
+<form [formGroup]="fg">
+    <nb-card>
+        <nb-card-header>
+    
+        </nb-card-header>
+        <nb-card-body>
+            <div>
+                <input nbInput formControlName="titleFr">
+            </div>
+            <div>
+                <textarea formControlName="contentFr" cols="30" rows="10"></textarea>
+            </div>
+            
+        </nb-card-body>
+    </nb-card>
+</form>
