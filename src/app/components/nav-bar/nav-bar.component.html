@@ -59,28 +59,28 @@
             <a (click)="selectNL()">NL</a>
             <a (click)="selectEN()">EN</a>
       </div>    
-      <div *ngIf="1+1 === 1; else loggedin">
+      <div *ngIf="!userConnected; else loggedin">
           <!-- Login -->
-          <a routerLink="/login"><nb-icon icon="lock-outline"></nb-icon> {{'nav.login' | translate}}</a>
+          <a routerLink="/login"><nb-icon status="success" icon="lock-outline"></nb-icon> {{'nav.login' | translate}}</a>
       </div>
         
     </div>
 
     <ng-template #loggedin>
-      <div *ngIf="1+1 === 1; else isAdmin">
+      <div *ngIf="userConnected && !userConnected.isAdmin else isAdmin">
         <!-- User -->
 
         <div class="dropdown">
-          <button class="dropbtn">{{'nav.connected' | translate}} 
+          <button class="dropbtn"><nb-icon status="info" icon="edit-outline"></nb-icon> {{'nav.connected' | translate}}
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a routerLink="/post">{{'nav.newArticle' | translate}}</a>
-            <a routerLink="/postAlbum">{{'nav.newAlbum' | translate}}</a>
+            <a routerLink="/post"><nb-icon status="info" icon="plus-outline"></nb-icon> {{'nav.newArticle' | translate}}</a>
+            <a routerLink="/album"><nb-icon status="info" icon="plus-outline"></nb-icon> {{'nav.newAlbum' | translate}}</a>
           </div>
         </div> 
 
-        <a (click)="logout()"><nb-icon icon="power-outline"></nb-icon> {{'nav.logout' | translate}}</a>
+        <a (click)="logout()"><nb-icon status="danger" icon="power-outline"></nb-icon> {{'nav.logout' | translate}}</a>
       </div>
     </ng-template>
 
@@ -89,17 +89,17 @@
       <!-- Admin -->
 
         <div class="dropdown">
-          <button class="dropbtn"><nb-icon icon="edit-outline"></nb-icon> {{'nav.connected' | translate}} 
+          <button class="dropbtn"><nb-icon status="success" icon="edit-outline"></nb-icon> {{'nav.connected' | translate}}
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a routerLink="/post"><nb-icon icon="plus-outline"></nb-icon> {{'nav.newArticle' | translate}}</a>
-            <a routerLink="/album"><nb-icon icon="plus-outline"></nb-icon> {{'nav.newAlbum' | translate}}</a>
-            <a routerLink="/user"><nb-icon icon="person-outline"></nb-icon> {{'nav.user' | translate}}</a>
+            <a routerLink="/post"><nb-icon status="success" icon="plus-outline"></nb-icon> {{'nav.newArticle' | translate}}</a>
+            <a routerLink="/album"><nb-icon status="success" icon="plus-outline"></nb-icon> {{'nav.newAlbum' | translate}}</a>
+            <a routerLink="/user"><nb-icon status="success" icon="person-outline"></nb-icon> {{'nav.user' | translate}}</a>
           </div>
         </div> 
 
-        <a (click)="logout()"><nb-icon icon="power-outline"></nb-icon> {{'nav.logout' | translate}}</a>
+        <a (click)="logout()"><nb-icon status="danger" icon="power-outline"></nb-icon> {{'nav.logout' | translate}}</a>
       </div>
     </ng-template>
 </div>

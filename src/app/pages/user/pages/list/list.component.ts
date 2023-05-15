@@ -1,7 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { takeUntil } from 'rxjs';
 import { DestroyedComponent } from 'src/app/core/destroyed.component';
-import { UserList } from 'src/app/models/user.list.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -24,6 +23,7 @@ export class ListComponent extends DestroyedComponent implements OnInit {
     this._userService.userList
       .pipe(takeUntil(this.destroyed$))
       .subscribe(list => {
+        console.log('List Component :')
         console.log(list)
         this.userList = list;
       })

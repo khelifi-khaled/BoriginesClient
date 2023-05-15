@@ -11,7 +11,7 @@ export class FormErrorsComponent {
   @Input()
   control: AbstractControl| null = null;
 
-  get errors(): any{
+  get errors(): any{    
     return this.control?.errors;
   }
 }

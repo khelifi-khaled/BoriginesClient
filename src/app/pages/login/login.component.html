@@ -2,14 +2,14 @@
     <nb-card-header>
         <h1><nb-icon class="person" icon="person-outline"></nb-icon> Login</h1>
     </nb-card-header>
-    <nb-card-body>
+    <nb-card-body *ngIf="fg">
         <form [formGroup]="fg" (ngSubmit)="submit()">
             <div class="input-group">
-                <input nbInput placeholder="Email *"  type="text">
-                <app-form-errors [control]="fg.get('email')"></app-form-errors>
+                <input nbInput placeholder="Email *" formControlName="email"  type="text">
+                 <app-form-errors [control]="fg.controls['email']"></app-form-errors> 
             </div>
             <div class="input-group">
-                <input nbInput placeholder="Mot de Passe *"  type="password">
+                <input nbInput placeholder="Mot de Passe *" formControlName="password"  type="password">
                 <app-form-errors [control]="fg.get('password')"></app-form-errors>
             </div>
             <div class="input-group">

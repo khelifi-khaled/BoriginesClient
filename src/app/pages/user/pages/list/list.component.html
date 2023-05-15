@@ -5,7 +5,7 @@
     <nb-card-body>
         <nb-list>
                 <nb-list-item *ngFor="let user of userList; let i = index;" (click)="onClick(user)">
-                    {{ user.lastName|titlecase }} {{ user.firstName|titlecase }}
+                    {{ user.last_name|titlecase }} {{ user.first_name|titlecase }}
                 </nb-list-item>
         </nb-list>
     </nb-card-body>

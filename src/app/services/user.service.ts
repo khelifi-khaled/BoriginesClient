@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { UserList } from '../models/user.list.model';
+import { BehaviorSubject } from 'rxjs';
 import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environment/environment';
@@ -10,7 +9,9 @@ import { environment } from 'src/environment/environment';
 })
 export class UserService {
 
-  url: string = environment.baseUri + '/user';
+  url: string = environment.baseApi + 'User';
+  // url: string = environment.baseUri + 'User';
+
 
   private _userList$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
   private _userSelected$: BehaviorSubject<User|null> = new BehaviorSubject<User|null>(null);
@@ -30,13 +31,29 @@ export class UserService {
   }
 
   getAll(){
+    console.log('test');
+    
     return this._httpClient.get<User[]>(this.url, { reportProgress: true }).subscribe(list => {
       this._userList$.next(list);
+      console.log('user servive :');
+      console.log(list);
+      
+      
+      
     });
+  }
+
+  createUser(user: any){
+    return this._httpClient.post<any>(this.url + '/PostUser', user, { reportProgress: true});
+  }
+
+  updateUser(user: any){
+    return this._httpClient.put<any>(this.url + '/PutUser', user, { reportProgress: true});
   }
 
   toDetails(user: User){
     this._userSelected$.next(user);
+    localStorage.setItem("userSelected", JSON.stringify(user));
   }
 
 

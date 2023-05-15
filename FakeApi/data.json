@@ -1,39 +1,39 @@
 {
-    "user": [
+    "User": [
         {
             "id": 1,
-            "lastName":"Depuydt",
-            "firstName":"Filip",
+            "last_name":"Depuydt",
+            "first_name":"Filip",
             "isAdmin": true,
-            "email": "d.filip@borigines.be"
+            "login": "d.filip@borigines.be"
         },
         {
             "id": 2,
-            "lastName":"Ly",
-            "firstName":"Khun",
+            "last_name":"Ly",
+            "first_name":"Khun",
             "isAdmin": false,
-            "email": "l.khun@borigines.be"
+            "login": "l.khun@borigines.be"
         },
         {
             "id": 3,
-            "lastName":"Smith",
-            "firstName":"John",
+            "last_name":"Smith",
+            "first_name":"John",
             "isAdmin": false,
-            "email": "s.john@borigines.be"
+            "login": "s.john@borigines.be"
         },
         {
             "id": 4,
-            "lastName":"Laloux",
-            "firstName":"Jean Michel",
+            "last_name":"Laloux",
+            "first_name":"Jean Michel",
             "isAdmin": false,
-            "email": "l.jmi@borigines.be"
+            "login": "l.jmi@borigines.be"
         },
         {
             "id": 5,
-            "lastName":"Khelifi",
-            "firstName":"Khaled",
+            "last_name":"Khelifi",
+            "first_name":"Khaled",
             "isAdmin": false,
-            "email": "kk@borigines.be"
+            "login": "kk@borigines.be"
         }
     ]
 }

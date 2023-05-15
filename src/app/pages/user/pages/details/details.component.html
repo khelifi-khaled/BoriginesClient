@@ -1,50 +1,62 @@
 <nb-card>
     <nb-card-header class="flex">
         <h3>User :</h3> 
-        <button status="info" type="button" nbButton><nb-icon icon="plus-outline"></nb-icon> Add</button>
+        <button status="info" type="button" (click)="add()" nbButton><nb-icon icon="plus-outline" ></nb-icon> Add</button>
     </nb-card-header>
-    <nb-card-body *ngIf="selectedUser">
-        <form [formGroup]="fg">
+    <nb-card-body>
+        <form [formGroup]="fg" (ngSubmit)="submit()">
             <div>
                 <label>Last Name :</label>
             </div>
             <div>
-                <input placeholder="Last Name *" type="text" formControlName="lastName" nbInput [value]="selectedUser.lastName">
+                <input placeholder="Last Name *" type="text" formControlName="lastName" nbInput>
                 <app-form-errors [control]="fg.get('lastName')"></app-form-errors>
             </div>
             <div>
                 <label>First Name :</label>
             </div>
             <div>
-                <input placeholder="First Name *" type="text" formControlName="firstName" nbInput [value]="selectedUser.firstName">
+                <input placeholder="First Name *" type="text" formControlName="firstName" nbInput >
                 <app-form-errors [control]="fg.get('firstName')"></app-form-errors>
             </div>
             <div>
                 <label>Email :</label>
             </div>
             <div>
-                <input placeholder="Email *" formControlName="email" type="email" nbInput [value]="selectedUser.email">
+                <input placeholder="Email *" formControlName="email" type="email" nbInput 
+                #inputElement (copy)="preventAction($event)"
+                              (paste)="preventAction($event)" 
+                              (cut)="preventAction($event)">
                 <app-form-errors [control]="fg.get('email')"></app-form-errors>
             </div>
             <div>
                 <label>Confirm Email :</label>
             </div>
             <div>
-                <input placeholder="Confirm Email *" type="email" formControlName="confirmEmail" nbInput>
+                <input placeholder="Confirm Email *" type="email" formControlName="confirmEmail" nbInput
+                #inputElement (copy)="preventAction($event)"
+                              (paste)="preventAction($event)" 
+                              (cut)="preventAction($event)">
                 <app-form-errors [control]="fg.get('confirmEmail')"></app-form-errors>
             </div>
             <div>
                 <label>Password :</label>
             </div>
             <div>
-                <input placeholder="Password *" type="password" formControlName="password" nbInput>
+                <input placeholder="Password *" type="password" formControlName="password" nbInput
+                #inputElement (copy)="preventAction($event)"
+                              (paste)="preventAction($event)" 
+                              (cut)="preventAction($event)">
                 <app-form-errors [control]="fg.get('password')"></app-form-errors>
             </div>
             <div>
                 <label>Confirm Password :</label>
             </div>
             <div>
-                <input placeholder="Confirm Password *" type="password" formControlName="confirmPassword" nbInput>
+                <input placeholder="Confirm Password *" type="password" formControlName="confirmPassword" nbInput
+                #inputElement (copy)="preventAction($event)"
+                              (paste)="preventAction($event)" 
+                              (cut)="preventAction($event)">
                 <app-form-errors [control]="fg.get('confirmPassword')"></app-form-errors>
             </div>
             <div>

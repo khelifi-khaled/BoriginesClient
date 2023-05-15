@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NbToastrService } from '@nebular/theme';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   templateUrl: './login.component.html',
@@ -10,6 +13,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private readonly _formBuilder: FormBuilder,
+    private readonly _loginService: LoginService,
+    private readonly _toaster: NbToastrService,
+    private readonly _router: Router,
   ){}
 
   ngOnInit(): void {
@@ -28,6 +34,11 @@ export class LoginComponent implements OnInit {
   }
 
   submit(){
-
+    if(this.fg.invalid){
+      this._toaster.warning('Echec login');
+      return;
+    }
+    this._loginService.getUser(this.fg.get('email')?.value, this.fg.get('password')?.value);
   }
+
 }
