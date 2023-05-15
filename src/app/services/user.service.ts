@@ -35,16 +35,14 @@ export class UserService {
     
     return this._httpClient.get<User[]>(this.url, { reportProgress: true }).subscribe(list => {
       this._userList$.next(list);
-      console.log('user servive :');
-      console.log(list);
-      
-      
+      // console.log('user servive :');
+      // console.log(list);
       
     });
   }
 
   createUser(user: any){
-    return this._httpClient.post<any>(this.url + '/PostUser', user, { reportProgress: true});
+    return this._httpClient.post<any>(this.url + '/PostUser', user, { reportProgress: true})
   }
 
   updateUser(user: any){
@@ -54,6 +52,10 @@ export class UserService {
   toDetails(user: User){
     this._userSelected$.next(user);
     localStorage.setItem("userSelected", JSON.stringify(user));
+  }
+
+  saveList (newUserList : User[]){
+    this._userList$.next(newUserList);
   }
 
 

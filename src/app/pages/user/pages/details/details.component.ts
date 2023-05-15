@@ -16,6 +16,7 @@ export class DetailsComponent extends DestroyedComponent implements OnInit {
 
   userSelected: User|null = null;
   fg!: FormGroup;
+  userList :  User[] = []; 
 
   //get
   get UserSelected(): User|null {
@@ -57,6 +58,9 @@ export class DetailsComponent extends DestroyedComponent implements OnInit {
       password: [null, [Validators.required]],
       confirmPassword: [null, [Validators.required]],
     });
+    this._userService.userList.subscribe((data) => {
+      this.userList = data ;
+    })
     
   }
 
@@ -80,17 +84,28 @@ export class DetailsComponent extends DestroyedComponent implements OnInit {
     }
 
     const userToAdd = {
+      id : 0,
       first_name: this.fg.get('firstName')?.value,
       last_name: this.fg.get('lastName')?.value,
       login: this.fg.get('email')?.value,
       password: this.fg.get('password')?.value,
     }
 
-    this._userService.createUser(userToAdd).subscribe(() => {
-      this._toaster.success('New user created !');
-      this.fg.reset();
+    this._userService.createUser(userToAdd).subscribe({
+      next: ( _ ) =>  {
+        // userToAdd.id = data.id,
+        this._toaster.success('New user created !');
+        this.fg.reset();
+        // this.userList.push(userToAdd);
+        // this._userService.saveList(this.userList);
+        this.addToList(userToAdd);
+      }, 
+      error: (data)  => {
+        this._toaster.danger(data.message);
+      }
       
-    })
+    });;
+    
   }
 
   updateUser(){
@@ -100,19 +115,47 @@ export class DetailsComponent extends DestroyedComponent implements OnInit {
     }
 
     const userToUpdate = {
-      id: this.userSelected?.id,
+      id: this.userSelected!.id,
       first_name: this.fg.get('firstName')?.value,
       last_name: this.fg.get('lastName')?.value,
       login: this.fg.get('email')?.value,
       password: this.fg.get('password')?.value,
     }
 
-    console.log(userToUpdate);
+    // console.log(userToUpdate);
+
+    this._userService.updateUser(userToUpdate).subscribe({
+      next: ( _ ) => {
+        this._toaster.success('User updated !')
+        this.fg.reset();
+        this.updateList(userToUpdate);
+        console.log(this.userList);
+        
+        // this.addToList(userToUpdate);
+        // console.log(this.userList);
+        
+      }
+      
+    });
+  }
+
+  updateList(user: User){
+    const index = this.userList.findIndex(toRemove => toRemove.id === user.id);
+    console.log(user);
+    console.log(index);
+    
     
 
-    this._userService.updateUser(userToUpdate).subscribe(() => {
-      this._toaster.success('User updated !')
-    })
+    if(index !== -1){
+      this.userList.splice(index, 1);
+      this.userList.splice(index, 0, user);
+    }
+      
+  }
+
+  addToList(user: User){
+    this.userList.push(user);
+    this._userService.saveList(this.userList);
   }
 
   preventAction(event: ClipboardEvent): void {
