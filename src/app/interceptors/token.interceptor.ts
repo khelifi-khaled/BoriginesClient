@@ -16,9 +16,9 @@ export class TokenInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if(this._loginService.token){
+    if(this._loginService.validToken){
             
-      let clone = request.clone({ setHeaders: { "Authorization" : "bearer "+ this._loginService.token }});
+      let clone = request.clone({ setHeaders: { "Authorization" : "bearer "+ this._loginService.validToken }});
       return next.handle(clone);
     }
     

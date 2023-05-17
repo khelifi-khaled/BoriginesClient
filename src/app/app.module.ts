@@ -27,6 +27,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { LoaderComponent } from './components/loader/loader.component';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { ArticleComponent } from './pages/article/article.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     ListComponent,
     DetailsComponent,
     NotFoundComponent,
-    LoaderComponent
+    LoaderComponent,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,
@@ -71,8 +73,8 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     }),
   ],
   providers: [
+    // { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]

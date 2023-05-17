@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environment/environment';
@@ -10,7 +10,7 @@ import { environment } from 'src/environment/environment';
 export class UserService {
 
   url: string = environment.baseApi + 'User';
-  // url: string = environment.baseUri + 'User';
+  //! url: string = environment.baseUri + 'User';
 
 
   private _userList$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
@@ -31,7 +31,7 @@ export class UserService {
   }
 
   getAll(){
-    console.log('test');
+    // // console.log('test');
     
     return this._httpClient.get<User[]>(this.url, { reportProgress: true }).subscribe(list => {
       this._userList$.next(list);
@@ -42,7 +42,7 @@ export class UserService {
   }
 
   createUser(user: any){
-    return this._httpClient.post<any>(this.url + '/PostUser', user, { reportProgress: true})
+    return this._httpClient.post<any>(this.url + '/PostUser', user, { reportProgress: true});
   }
 
   updateUser(user: any){
@@ -56,6 +56,10 @@ export class UserService {
 
   saveList (newUserList : User[]){
     this._userList$.next(newUserList);
+  }
+
+  checkEmail(email: any) : Observable<any>{
+    return this._httpClient.post(this.url + '/checkEmail', email);
   }
 
 

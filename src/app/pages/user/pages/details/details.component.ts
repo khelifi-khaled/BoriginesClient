@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { NbToastrService } from '@nebular/theme';
-import { takeUntil } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable, debounceTime, map, of, takeUntil, tap } from 'rxjs';
 import { DestroyedComponent } from 'src/app/core/destroyed.component';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -34,6 +35,7 @@ export class DetailsComponent extends DestroyedComponent implements OnInit {
     private readonly _userService: UserService,
     private readonly _formBuilder: FormBuilder,
     private readonly _toaster: NbToastrService,
+    private readonly _translate: TranslateService,
   ){
     super();
   }
@@ -51,25 +53,115 @@ export class DetailsComponent extends DestroyedComponent implements OnInit {
       })
 
     this.fg = this._formBuilder.group({
-      lastName: [null, [Validators.required]],
-      firstName: [null, [Validators.required]],
-      email: [null, [Validators.required]],
-      confirmEmail: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      confirmPassword: [null, [Validators.required]],
+      lastName: [null, [Validators.required, Validators.maxLength(50),]],
+      firstName: [null, [Validators.required, Validators.maxLength(50),]],
+      email: [null, 
+        [Validators.required,
+        Validators.maxLength(250),
+        Validators.email,
+        Validators.pattern(/^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z].{1,}$/),
+        
+      ]
+      ,[
+        this.emailExistsValidator
+      ]
+    ],
+      confirmEmail: [null, [
+        Validators.required,
+        Validators.email, 
+        this.match("email"),
+      ]],
+      password: [null, [
+        Validators.required,
+        Validators.minLength(8), 
+        Validators.maxLength(20),
+      ]],
+      confirmPassword: [null, [
+        Validators.required,
+        Validators.minLength(8), 
+        Validators.maxLength(20),
+        this.match("password"),
+      ]],
     });
+
     this._userService.userList.subscribe((data) => {
       this.userList = data ;
-    })
+    });
     
+    // this.fg.get('email')?.valueChanges.pipe(
+    //   debounceTime(5000)).subscribe({ 
+    //     next : (value) => { 
+    //       this.fg.get('email')?.addAsyncValidators([
+    //         this.emailExistsValidator(this._userService)
+    //       ]); 
+    //     }, 
+    //     complete : () => { this.fg.get('email')?.clearAsyncValidators(); 
+    //   } 
+    // });
+
+
   }
 
+  match(toMatch : string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors|null => {
+        const value: string = control.value;
+        
+        if(!value){
+            return null;
+        }
+
+        if(this.fg.controls[toMatch].value !== value && this.fg.controls[toMatch].touched){
+            return { notMatching: true }
+        }
+
+        return null;
+    }
+  }
+
+  // emailExistsValidator = (service: UserService): AsyncValidatorFn => {
+  //    return (control: AbstractControl): Promise<ValidationErrors | null> => { 
+  //     const Email = { EmailToCheck: control.value }; 
+  //     return new Promise<ValidationErrors | null>((resolve, reject) => { 
+  //       if (!Email.EmailToCheck) { 
+  //         resolve(null); 
+  //         return; 
+  //       } 
+  //       service.checkEmail(Email).pipe(
+  //         tap((resp : any) => this.test = resp),
+  //         map((response: any) => {
+  //            response.isEmailExist ? {emailExistsValidator : true} : null
+  //         } 
+  //          ) ).subscribe((result)=>resolve, reject)
+  //       }); 
+  //     }; 
+  //   };
+
+  emailExistsValidator() : AsyncValidatorFn | null {
+    return (control : AbstractControl) => {
+      console.log(control.value)
+      if(!control.value) {
+        return of(null)
+      }
+      else {
+        return this._userService.checkEmail(control.value)
+        .pipe(
+          tap((resp) => this.test = resp),
+          map((response : any) => {
+          return response.isEmailExist ? {emailExistsValidator : true} : null
+        }))
+      }
+    }
+    
+  }
+    test! :any
   add(){
     this.UserSelected = null;
-    this.fg.reset()
+    this.fg.reset()    
   }
 
   submit(){
+    this.fg.markAllAsTouched();
+
     if(!this.UserSelected?.id){
       this.newUser();
     } else {
@@ -92,12 +184,12 @@ export class DetailsComponent extends DestroyedComponent implements OnInit {
     }
 
     this._userService.createUser(userToAdd).subscribe({
-      next: ( _ ) =>  {
-        // userToAdd.id = data.id,
+      next: ( data ) =>  {
+        userToAdd.id = data.IdUserInserted,
         this._toaster.success('New user created !');
         this.fg.reset();
-        // this.userList.push(userToAdd);
-        // this._userService.saveList(this.userList);
+        //// this.userList.push(userToAdd);
+        //// this._userService.saveList(this.userList);
         this.addToList(userToAdd);
       }, 
       error: (data)  => {
@@ -129,11 +221,9 @@ export class DetailsComponent extends DestroyedComponent implements OnInit {
         this._toaster.success('User updated !')
         this.fg.reset();
         this.updateList(userToUpdate);
-        console.log(this.userList);
-        
-        // this.addToList(userToUpdate);
         // console.log(this.userList);
-        
+        //// this.addToList(userToUpdate);
+        //// console.log(this.userList);
       }
       
     });

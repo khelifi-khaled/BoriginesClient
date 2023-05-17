@@ -12,6 +12,7 @@ export class FormErrorsComponent {
   control: AbstractControl| null = null;
 
   get errors(): any{    
+ 
     return this.control?.errors;
   }
 }

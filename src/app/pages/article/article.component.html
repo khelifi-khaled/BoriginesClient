@@ -1,0 +1,20 @@
+<div class="content" *ngIf="articleList">
+    <nb-card class="card" *ngFor="let article of articleList.slice().reverse()">
+        <nb-card-header class="flex">
+            <div class="titre">
+                <div>
+                    <p class="title flex">{{ article.title }}</p>
+                </div>
+                <div class="written">
+                    <p>écrit par : {{ article.userLastName }} {{ article.userFirstName }}, le {{ article.date }}</p>
+                </div>
+            </div>
+        </nb-card-header>
+        <nb-card-body>
+            <p class="text">{{ article.content }}</p>
+        </nb-card-body>
+        <nb-card-footer>
+            
+        </nb-card-footer>
+    </nb-card>
+</div>

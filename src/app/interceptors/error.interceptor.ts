@@ -23,17 +23,19 @@ export class ErrorInterceptor implements HttpInterceptor {
           this._toaster.danger('Check your datas');  
         break;
         case 401:
+          this._toaster.danger('You are not authorized to do this operation');
+          break;
         case 403:
-          this._toaster.danger('You are not allowed to do this operation')
+          this._toaster.danger('You are not allowed to do this operation');
           break;
         case 404: 
-          this._toaster.danger('Resource not found')
+          this._toaster.danger('Resource not found');
           break;
         case 418:
-          this._toaster.danger('I\'m a teapot')
+          this._toaster.danger('I\'m a teapot');
           break;
         default:
-          this._toaster.danger('Something went wrong...')
+          this._toaster.danger('Something went wrong...');
           break;
       };
       

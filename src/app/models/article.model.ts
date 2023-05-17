@@ -1,9 +1,10 @@
 export interface Article{
     id: number,
-    idCategory: number,
-    IdContentFr: number,
-    IdContentEn: number,
-    idContentNl: number,
+    idUser: number,
+    userLastName: string,
+    userFirstName: string,
     date: Date,
-    idUser: number
+    idCategory: number,
+    title: string,
+    content: string,
 }

@@ -1,0 +1,39 @@
+.flex {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    width: 75%;
+}
+
+.title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.text {
+    margin: 1.5rem 8rem;
+    font-size: 1.1rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.titre {
+    display: flex;
+    flex-direction: column;
+}
+
+.written {
+    display: flex;
+    width: 100vh;
+    justify-content: end;
+    margin-bottom: -1.5rem;
+}

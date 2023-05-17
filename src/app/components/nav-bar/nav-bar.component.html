@@ -1,7 +1,3 @@
-<!-- <div>
-    <p-button label="Accueil" styleClass="p-button-danger" routerLink="/main" styleClass="p-button-link"></p-button>
-    <p-button label="Login" routerLink="/login" styleClass="p-button-link"></p-button>
-</div> -->
 <div class="flex">
     <div class="navbar">
         <!-- Home -->
@@ -20,9 +16,9 @@
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a routerLink="">{{'nav.history' | translate}}</a>
-            <a routerLink="">{{'nav.life' | translate}}</a>
-            <a routerLink="">{{'nav.borinage' | translate}}</a>
+            <a (click)="navigate(1)">{{'nav.history' | translate}}</a>
+            <a (click)="navigate(2)">{{'nav.life' | translate}}</a>
+            <a (click)="navigate(3)">{{'nav.borinage' | translate}}</a>
           </div>
         </div> 
         <!-- Borigines -->
@@ -31,8 +27,8 @@
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-              <a routerLink="">{{'nav.presentation' | translate}}</a>
-              <a routerLink="">{{'nav.goals' | translate}}</a>
+              <a (click)="navigate(4)">{{'nav.presentation' | translate}}</a>
+              <a (click)="navigate(5)">{{'nav.goals' | translate}}</a>
             </div>
         </div> 
         <!-- Events -->
@@ -41,13 +37,13 @@
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-              <a routerLink="">{{'nav.walks' | translate}}</a>
-              <a routerLink="">{{'nav.parties' | translate}}</a>
+              <a (click)="navigate(6)">{{'nav.walks' | translate}}</a>
+              <a (click)="navigate(7)">{{'nav.parties' | translate}}</a>
             </div>
         </div> 
         <!-- Press -->
-        <a routerLink="">{{'nav.press' | translate}}</a>
-        <!-- Press -->
+        <a (click)="navigate(8)">{{'nav.press' | translate}}</a>
+        <!-- Album -->
         <a routerLink="/album">{{'nav.album' | translate}}</a>
         <!-- Blog -->
         <a href="https://vangoghborinage.canalblog.com/">{{'nav.blog' | translate}}</a>

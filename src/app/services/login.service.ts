@@ -16,11 +16,13 @@ export class LoginService {
   _isValidToken$: BehaviorSubject<string|null> = new BehaviorSubject<string|null>(this.validToken);
 
   get userConnected(){
-    return localStorage.getItem('userConnected') ? JSON.parse(localStorage.getItem('userConnected')!) : null;
+    //? return localStorage.getItem('userConnected') ? JSON.parse(localStorage.getItem('userConnected')!) : null;
+    return JSON.parse(localStorage.getItem('userConnected') || 'null');
   }
 
   get validToken(){
-    return localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')!) : null;
+    //? return localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')!) : null;
+    return JSON.parse(localStorage.getItem('token') || 'null');
   }
 
   constructor(

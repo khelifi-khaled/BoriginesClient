@@ -1,9 +1,10 @@
+{{test | json}}
 <nb-card>
     <nb-card-header class="flex">
         <h3>User :</h3> 
-        <button status="info" type="button" (click)="add()" nbButton><nb-icon icon="plus-outline" ></nb-icon> Add</button>
+        <button class="btnNew" status="info" type="button" (click)="add()" nbButton><nb-icon icon="plus-outline" ></nb-icon> New</button>
     </nb-card-header>
-    <nb-card-body>
+    <nb-card-body class="user">
         <form [formGroup]="fg" (ngSubmit)="submit()">
             <div>
                 <label>Last Name :</label>

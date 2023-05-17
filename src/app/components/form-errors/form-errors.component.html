@@ -15,6 +15,7 @@
                 actual: {{ errors.minAge.actual }}, min: {{ errors.minAge.required }} 
             )</div>
         <div *ngIf="errors.minAge">* invalid NISS</div>
+        <div *ngIf="errors.emailExistsValidator">* this email is already in the database</div>
     </div>
     </ng-container>
 </ng-container>
