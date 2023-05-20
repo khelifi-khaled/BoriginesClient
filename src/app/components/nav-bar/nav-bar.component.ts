@@ -2,6 +2,7 @@
 import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from 'src/app/services/language.service';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -15,8 +16,11 @@ export class NavBarComponent {
     return this._loginService.userConnected;
   }
 
+  test  : any | null = null ; 
+
   constructor(
     private readonly _translateService: TranslateService,
+    private readonly _languageService : LanguageService,
     private readonly _loginService: LoginService,
     private readonly _router: Router,
   ){}
@@ -25,10 +29,15 @@ export class NavBarComponent {
     this._router.navigate(['/article'], {
       queryParams: { id: idCategory }
     });
+
+    
+    
   }
 
   changeLanguage(lang: string){
     this._translateService.use(lang);
+   this._languageService.ChangeLanguage();
+
   }
 
   selectFR(){

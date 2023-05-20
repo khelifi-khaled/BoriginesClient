@@ -10,8 +10,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ArticleService {
 
-  // url: string = environment.baseApi + 'Article';
-  url: string = environment.baseUri + 'Article';
+  url: string = environment.baseApi + 'Article';
+  // url: string = environment.baseUri + 'Article';
   
   private _articleList$: BehaviorSubject<Article[]> = new BehaviorSubject<Article[]>([]);
 
@@ -31,12 +31,12 @@ export class ArticleService {
 
 
   getAll(idCategory: number, language: string){
-    const credentials = { idCategory: idCategory };
-    return this._httpClient.get<Article[]>(this.url, { 
-        params: credentials, 
-        reportProgress: true 
-      }).subscribe(list => {
-      this._articleList$.next(list);
+    //? const credentials = { idCategory: idCategory };
+    return this._httpClient.get<Article[]>(
+      this.url + '/GetAllByCategory/' + idCategory + '/' + language, 
+      { reportProgress: true })
+        .subscribe(list => {
+          this._articleList$.next(list);
      
     });
   }

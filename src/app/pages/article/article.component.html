@@ -1,5 +1,5 @@
 <div class="content" *ngIf="articleList">
-    <nb-card class="card" *ngFor="let article of articleList.slice().reverse()">
+    <nb-card class="card" *ngFor="let article of articleList">
         <nb-card-header class="flex">
             <div class="titre">
                 <div>
@@ -14,7 +14,14 @@
             <p class="text">{{ article.content }}</p>
         </nb-card-body>
         <nb-card-footer>
-            
+            <div class="flex">
+                <div>
+                    <button nbButton status="info" (click)="show()"><nb-icon icon="eye-outline"></nb-icon> Show</button>
+                </div>
+                <div *ngIf="userConnected">
+                    <button nbButton status="info" (click)="edit()"><nb-icon icon="edit-outline"></nb-icon> Edit</button>
+                </div>
+            </div>
         </nb-card-footer>
     </nb-card>
 </div>

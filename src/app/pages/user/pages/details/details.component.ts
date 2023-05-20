@@ -2,9 +2,10 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { NbToastrService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, debounceTime, map, of, takeUntil, tap } from 'rxjs';
+import { map, of, takeUntil, tap } from 'rxjs';
 import { DestroyedComponent } from 'src/app/core/destroyed.component';
 import { User } from 'src/app/models/user.model';
+import { LanguageService } from 'src/app/services/language.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -35,9 +36,11 @@ export class DetailsComponent extends DestroyedComponent implements OnInit {
     private readonly _userService: UserService,
     private readonly _formBuilder: FormBuilder,
     private readonly _toaster: NbToastrService,
-    private readonly _translate: TranslateService,
+    private readonly _translateService: TranslateService,
+    private readonly _languageService: LanguageService,
   ){
     super();
+    this._translateService.use(this._languageService.myLanguage);
   }
 
   ngOnInit(): void {

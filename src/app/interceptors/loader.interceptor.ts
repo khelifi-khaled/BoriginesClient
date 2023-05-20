@@ -17,6 +17,7 @@ export class LoaderInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    
     if(request.reportProgress){
       const dialog = this.dialogService.open(LoaderComponent, { closeOnEsc: false, closeOnBackdropClick: false });
       return next.handle(request).pipe(finalize(() => dialog.close()));

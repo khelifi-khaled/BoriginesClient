@@ -16,8 +16,8 @@ export class ErrorInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-
     return next.handle(request).pipe(catchError(xhr => {
+      
       switch (xhr.status){
         case 400: 
           this._toaster.danger('Check your datas');  

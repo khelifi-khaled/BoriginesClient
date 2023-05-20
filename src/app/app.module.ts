@@ -9,7 +9,7 @@ import { MainComponent } from './pages/main/main.component';
 import { LoginComponent } from './pages/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbCardModule, NbButtonModule, 
-  NbIconModule, NbInputModule, NbListModule, NbToastrModule } from '@nebular/theme';
+  NbIconModule, NbInputModule, NbListModule, NbToastrModule, NbDialogModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormErrorsComponent } from './components/form-errors/form-errors.component';
@@ -64,6 +64,7 @@ import { ArticleComponent } from './pages/article/article.component';
     NbListModule,
     NbInputModule,
     NbEvaIconsModule,
+    NbDialogModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -73,9 +74,9 @@ import { ArticleComponent } from './pages/article/article.component';
     }),
   ],
   providers: [
-    // { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
