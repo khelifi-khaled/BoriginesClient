@@ -16,7 +16,8 @@ export class NavBarComponent {
     return this._loginService.userConnected;
   }
 
-  test  : any | null = null ; 
+  // test  : any | null = null ; 
+  // isMenuOpen: boolean = false;
 
   constructor(
     private readonly _translateService: TranslateService,
@@ -29,20 +30,16 @@ export class NavBarComponent {
     this._router.navigate(['/article'], {
       queryParams: { id: idCategory }
     });
-
-    
-    
+    this.closeMenu();
   }
 
   changeLanguage(lang: string){
     this._translateService.use(lang);
    this._languageService.ChangeLanguage();
-
   }
 
   selectFR(){
     this.changeLanguage("fr");
-    
   }
 
   selectNL(){
@@ -55,5 +52,13 @@ export class NavBarComponent {
  
   logout(){
     this._loginService.logout();
+    this.closeMenu;
+  }
+
+  closeMenu() {
+    const toggleMenuCheckbox = document.getElementById('toggle-menu') as HTMLInputElement;
+    if (toggleMenuCheckbox) {
+      toggleMenuCheckbox.checked = false;
+    }
   }
 }

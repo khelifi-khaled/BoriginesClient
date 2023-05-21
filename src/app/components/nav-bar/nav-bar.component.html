@@ -1,6 +1,6 @@
 <div class="flex">
     <div class="navbar">
-        <!-- Home -->
+        
         <div class="dropdown">
             <button class="dropbtn">{{'nav.home' | translate}} 
               <i class="fa fa-caret-down"></i>
@@ -10,7 +10,7 @@
               <a routerLink="/contact">{{'nav.contact' | translate}}</a>
             </div>
         </div> 
-        <!-- Van Gogh -->
+        
         <div class="dropdown">
           <button class="dropbtn">{{'nav.vangogh' | translate}} 
             <i class="fa fa-caret-down"></i>
@@ -21,7 +21,7 @@
             <a (click)="navigate(3)">{{'nav.borinage' | translate}}</a>
           </div>
         </div> 
-        <!-- Borigines -->
+        
         <div class="dropdown">
             <button class="dropbtn">{{'nav.borigines' | translate}} 
               <i class="fa fa-caret-down"></i>
@@ -31,7 +31,7 @@
               <a (click)="navigate(5)">{{'nav.goals' | translate}}</a>
             </div>
         </div> 
-        <!-- Events -->
+        
         <div class="dropdown">
             <button class="dropbtn">{{'nav.events' | translate}} 
               <i class="fa fa-caret-down"></i>
@@ -41,22 +41,22 @@
               <a (click)="navigate(7)">{{'nav.parties' | translate}}</a>
             </div>
         </div> 
-        <!-- Press -->
+        
         <a (click)="navigate(8)">{{'nav.press' | translate}}</a>
-        <!-- Album -->
+        
         <a routerLink="/album">{{'nav.album' | translate}}</a>
-        <!-- Blog -->
+        
         <a href="https://vangoghborinage.canalblog.com/">{{'nav.blog' | translate}}</a>
     </div>
     <div class="navbar row" >
       <div>
-            <!-- Languages -->
+            
             <a (click)="selectFR()">FR</a>
             <a (click)="selectNL()">NL</a>
             <a (click)="selectEN()">EN</a>
       </div>    
       <div *ngIf="!userConnected; else loggedin">
-          <!-- Login -->
+          
           <a routerLink="/login"><nb-icon status="success" icon="lock-outline"></nb-icon> {{'nav.login' | translate}}</a>
       </div>
         
@@ -64,7 +64,7 @@
 
     <ng-template #loggedin>
       <div *ngIf="userConnected && !userConnected.isAdmin else isAdmin">
-        <!-- User -->
+        
 
         <div class="dropdown">
           <button class="dropbtn"><nb-icon status="info" icon="edit-outline"></nb-icon> {{'nav.connected' | translate}}
@@ -82,7 +82,7 @@
 
     <ng-template #isAdmin>
       <div>
-      <!-- Admin -->
+      
 
         <div class="dropdown">
           <button class="dropbtn"><nb-icon status="success" icon="edit-outline"></nb-icon> {{'nav.connected' | translate}}
@@ -98,4 +98,71 @@
         <a (click)="logout()"><nb-icon status="danger" icon="power-outline"></nb-icon> {{'nav.logout' | translate}}</a>
       </div>
     </ng-template>
+</div>
+
+
+<div class="header">
+  <div class="logo">
+    <a routerLink="">
+      <img src="assets/img/logo.jpg" alt="logo">
+    </a>
+  </div>
+  <div class="row">
+    <a (click)="selectFR()">FR</a>
+    <a (click)="selectNL()">NL</a>
+    <a (click)="selectEN()">EN</a>
+  </div>
+  <div class="navigation">
+    <input type="checkbox" class="toggle-menu" id="toggle-menu">
+    <div class="hamburger"></div>
+    <ul class="menu">
+      <li><a (click)="closeMenu()" routerLink="/main">{{'nav.home' | translate}} - {{'nav.presentation' | translate}}</a></li>
+      <li><a (click)="closeMenu()" routerLink="/contact">{{'nav.home' | translate}} - {{'nav.contact' | translate}}</a></li>
+      <li><a (click)="navigate(1)">{{'nav.vangogh' | translate}} - {{'nav.history' | translate}}</a></li>
+      <li><a (click)="navigate(2)">{{'nav.vangogh' | translate}} - {{'nav.life' | translate}}</a></li>
+      <li><a (click)="navigate(3)">{{'nav.vangogh' | translate}} - {{'nav.borinage' | translate}}</a></li>
+      <li><a (click)="navigate(4)">{{'nav.borigines' | translate}} - {{'nav.presentation' | translate}}</a></li>
+      <li><a (click)="navigate(5)">{{'nav.borigines' | translate}} - {{'nav.goals' | translate}}</a></li>
+      <li><a (click)="navigate(6)">{{'nav.events' | translate}} - {{'nav.walks' | translate}}</a></li>
+      <li><a (click)="navigate(7)">{{'nav.events' | translate}} - {{'nav.parties' | translate}}</a></li>
+      <li><a (click)="navigate(8)">{{'nav.press' | translate}}</a></li>
+      <li><a (click)="closeMenu()" routerLink="/album">{{'nav.album' | translate}}</a></li>
+      <li><a href="https://vangoghborinage.canalblog.com/">{{'nav.blog' | translate}}</a></li>
+    
+      <div *ngIf="!userConnected; else loggedin_side">
+        <li>
+          <a (click)="closeMenu()" routerLink="/login"><nb-icon status="success" icon="lock-outline"></nb-icon> {{'nav.login' | translate}}</a>
+        </li>
+      </div>
+
+      <ng-template #loggedin_side>
+        <div *ngIf="userConnected && !userConnected.isAdmin else isAdmin_side">
+          <li>
+            <a (click)="closeMenu()" routerLink="/post"><nb-icon status="info" icon="plus-outline"></nb-icon> {{'nav.newArticle' | translate}}</a>
+          </li>
+          <li>
+            <a (click)="closeMenu()" routerLink="/album"><nb-icon status="info" icon="plus-outline"></nb-icon> {{'nav.newAlbum' | translate}}</a>
+          </li>
+          <li>
+            <a (click)="logout()"><nb-icon status="danger" icon="power-outline"></nb-icon> {{'nav.logout' | translate}}</a>
+          </li>
+        </div>
+      </ng-template>
+
+      <ng-template #isAdmin_side>
+        <li>
+          <a (click)="closeMenu()" routerLink="/post"><nb-icon status="success" icon="plus-outline"></nb-icon> {{'nav.newArticle' | translate}}</a>
+        </li>
+        <li>
+          <a (click)="closeMenu()" routerLink="/album"><nb-icon status="success" icon="plus-outline"></nb-icon> {{'nav.newAlbum' | translate}}</a>
+        </li>
+        <li>
+          <a (click)="closeMenu()" routerLink="/user"><nb-icon status="success" icon="person-outline"></nb-icon> {{'nav.user' | translate}}</a>
+        </li>
+        <li>
+          <a (click)="logout()"><nb-icon status="danger" icon="power-outline"></nb-icon> {{'nav.logout' | translate}}</a>
+        </li>
+      </ng-template>
+    </ul>
+  </div>
 </div>

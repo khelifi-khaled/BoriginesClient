@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environment/environment';
 import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
+import { LanguageService } from './language.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +31,7 @@ export class LoginService {
     private readonly _httpClient: HttpClient,
     private readonly _router: Router,
     private readonly _toaster: NbToastrService,
+    private readonly _translateService: TranslateService,
   ) { }
 
   getUser(login: string, password: string){
@@ -63,6 +66,7 @@ export class LoginService {
 
   logout (){
     localStorage.clear();
+    localStorage.setItem('myLanguage', JSON.stringify(this._translateService.currentLang));
     this._router.navigate(['main']);
   }
 
