@@ -42,6 +42,13 @@ export class ArticleService {
     });
   }
 
+  getById(id: number){
+    return this._httpClient.get<Post>(this.url + '/GetArticleByIdEdit/' + id, { reportProgress: true })
+      .subscribe(article => {
+        this._articleSelected$.next(article);
+      });
+  }
+
   createArticle(article: any){
     return this._httpClient.post<any>(this.url + '/PostArticle', article, { reportProgress: true });
   }

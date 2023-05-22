@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
@@ -6,7 +6,6 @@ import { takeUntil } from 'rxjs';
 import { ArticleDialogComponent } from 'src/app/components/article-dialog/article-dialog/article-dialog.component';
 import { DestroyedComponent } from 'src/app/core/destroyed.component';
 import { Article } from 'src/app/models/article.model';
-import { Post } from 'src/app/models/post.model';
 import { ArticleService } from 'src/app/services/article.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -19,11 +18,12 @@ export class ArticleComponent extends DestroyedComponent implements OnInit {
 
   articleList: Article[] = [];
   _idCategory!: number
+  language!: string
+
   set idCategory(value : number) {
     this._idCategory = value
     this.loadArticle()
   }
-  language!: string
 
   get userConnected(){
     return this._loginService.userConnected;
@@ -42,7 +42,7 @@ export class ArticleComponent extends DestroyedComponent implements OnInit {
     this._translateService.use(this._languageService.myLanguage);
   }
 
-  test : any | null = null ; 
+  // // test : any | null = null ; 
 
   ngOnInit(): void {
     
@@ -61,10 +61,10 @@ export class ArticleComponent extends DestroyedComponent implements OnInit {
         this.language = lang
         this.loadArticle()
       })
-      // this._translateService.onTranslationChange.subscribe(data => {
-      //   this.test = data;
-      //   console.log(this.test)
-      // }); 
+      // // this._translateService.onTranslationChange.subscribe(data => {
+      // //   this.test = data;
+      // //   console.log(this.test)
+      // // }); 
       
   }
 
@@ -101,8 +101,9 @@ export class ArticleComponent extends DestroyedComponent implements OnInit {
     });
   }
 
-  edit(article: Post){
-    this._articleService.toPost(article);
+  edit(id: number){
+    const article = this._articleService.getById(id);
+    // this._articleService.toPost(article);
   }
 
 

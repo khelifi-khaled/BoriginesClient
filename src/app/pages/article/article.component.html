@@ -19,7 +19,7 @@
                     <button nbButton status="info" (click)="show(article)"><nb-icon icon="eye-outline"></nb-icon> Show</button>
                 </div>
                 <div *ngIf="userConnected">
-                    <button nbButton status="info" (click)="edit(article)"><nb-icon icon="edit-outline"></nb-icon> Edit</button>
+                    <button nbButton status="info" (click)="edit(article.id)"><nb-icon icon="edit-outline"></nb-icon> Edit</button>
                 </div>
             </div>
         </nb-card-footer>
