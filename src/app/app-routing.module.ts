@@ -8,13 +8,15 @@ import { AlbumComponent } from './pages/album/album.component';
 import { UserComponent } from './pages/user/user.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ArticleComponent } from './pages/article/article.component';
+import { CategoryResolver } from './resolvers/category.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'main', component: MainComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'post', component: PostComponent },
+  { path: 'post', component: PostComponent,
+    resolve: { category: CategoryResolver } },
   { path: 'album', component: AlbumComponent },
   { path: 'user', component: UserComponent },
   { path: 'article', component: ArticleComponent },

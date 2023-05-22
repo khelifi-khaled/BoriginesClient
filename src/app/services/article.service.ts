@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Article } from '../models/article.model';
 import { BehaviorSubject } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { Post } from '../models/post.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,11 @@ import { TranslateService } from '@ngx-translate/core';
 export class ArticleService {
 
   url: string = environment.baseApi + 'Article';
-  // url: string = environment.baseUri + 'Article';
+  //! url: string = environment.baseUri + 'Article';
   
   private _articleList$: BehaviorSubject<Article[]> = new BehaviorSubject<Article[]>([]);
 
-  private _articleSelected$: BehaviorSubject<Article|null> = new BehaviorSubject<Article|null>(null);
+  private _articleSelected$: BehaviorSubject<Post|null> = new BehaviorSubject<Post|null>(null);
 
   get articleList(){
     return this._articleList$.asObservable();
@@ -31,7 +32,7 @@ export class ArticleService {
 
 
   getAll(idCategory: number, language: string){
-    //? const credentials = { idCategory: idCategory };
+    // // const credentials = { idCategory: idCategory };
     return this._httpClient.get<Article[]>(
       this.url + '/GetAllByCategory/' + idCategory + '/' + language, 
       { reportProgress: true })

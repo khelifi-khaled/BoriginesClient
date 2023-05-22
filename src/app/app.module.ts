@@ -9,7 +9,7 @@ import { MainComponent } from './pages/main/main.component';
 import { LoginComponent } from './pages/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbCardModule, NbButtonModule, 
-  NbIconModule, NbInputModule, NbListModule, NbToastrModule, NbDialogModule } from '@nebular/theme';
+  NbIconModule, NbInputModule, NbListModule, NbToastrModule, NbDialogModule, NbSelectModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormErrorsComponent } from './components/form-errors/form-errors.component';
@@ -64,6 +64,7 @@ import { ArticleComponent } from './pages/article/article.component';
     NbListModule,
     NbInputModule,
     NbEvaIconsModule,
+    NbSelectModule,
     NbDialogModule.forRoot(),
     TranslateModule.forRoot({
       loader: {

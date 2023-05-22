@@ -3,16 +3,72 @@
 <form [formGroup]="fg">
     <nb-card>
         <nb-card-header>
-    
+            <div>
+                <div>
+                    <label>Category :</label>
+                </div>
+                <nb-select formControlName="category_id" placeholder="Choose a category *">
+                    <nb-option *ngFor="let category of categories" 
+                        [value]="category.id" 
+                        >{{ category.name_Category }}</nb-option>
+                </nb-select>
+                <app-form-errors [control]="fg.get('category_id')"></app-form-errors>
+            </div>
         </nb-card-header>
         <nb-card-body>
-            <div>
-                <input nbInput formControlName="titleFr">
-            </div>
-            <div>
-                <textarea formControlName="contentFr" cols="30" rows="10"></textarea>
-            </div>
-            
+            <nb-card>
+                <nb-card-header>
+                    <div>
+                        <label>Titre français :</label>
+                    </div>
+                    <input nbInput formControlName="titel_fr">
+                    <app-form-errors [control]="fg.get('titel_fr')"></app-form-errors>
+                </nb-card-header>
+                <nb-card-body>
+                    <div>
+                        <label>Contenu français :</label>
+                    </div>
+                    <textarea formControlName="content_fr" cols="70" rows="15"></textarea>
+                    <app-form-errors [control]="fg.get('content_fr')"></app-form-errors>
+                </nb-card-body>
+            </nb-card>
+            <nb-card>
+                <nb-card-header>
+                    <div>
+                        <label>English title :</label>
+                    </div>
+                    <input nbInput formControlName="titel_fr">
+                    <app-form-errors [control]="fg.get('titel_fr')"></app-form-errors>
+                </nb-card-header>
+                <nb-card-body>
+                    <div>
+                        <label>English content :</label>
+                    </div>
+                    <textarea formControlName="content_fr" cols="70" rows="15"></textarea>
+                    <app-form-errors [control]="fg.get('content_fr')"></app-form-errors>
+                </nb-card-body>
+            </nb-card>
+            <nb-card>
+                <nb-card-header>
+                    <div>
+                        <label>Nederlandse titel :</label>
+                    </div>
+                    <input nbInput formControlName="titel_fr">
+                    <app-form-errors [control]="fg.get('titel_fr')"></app-form-errors>
+                </nb-card-header>
+                <nb-card-body>
+                    <div>
+                        <label>Nederlandse inhoud :</label>
+                    </div>
+                    <textarea formControlName="content_fr" cols="70" rows="15"></textarea>
+                    <app-form-errors [control]="fg.get('content_fr')"></app-form-errors>
+                </nb-card-body>
+            </nb-card>
         </nb-card-body>
+        <nb-card-footer>
+            <div>
+                <button nbButton status="success" type="submit"><nb-icon icon="checkmark-outline"></nb-icon> Confirm</button>
+            </div>
+        </nb-card-footer>
     </nb-card>
 </form>
