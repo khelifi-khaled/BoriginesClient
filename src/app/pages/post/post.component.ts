@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NbToastrService } from '@nebular/theme';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
+import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog/confirm-dialog.component';
 import { Category } from 'src/app/models/category.model';
 import { Post } from 'src/app/models/post.model';
 import { ArticleService } from 'src/app/services/article.service';
@@ -19,6 +20,8 @@ export class PostComponent implements OnInit {
   fg!: FormGroup;
   categories: Category[] = [];
   articleSelected: Post|null = null;
+
+  dialogMSG: string = "<h5>Your article isn't finished.</h5</br><p>Are you sure you want to leave?</p>";
 
   //get
   get ArticleSelected(): Post|null {
@@ -40,16 +43,25 @@ export class PostComponent implements OnInit {
     private readonly _route: ActivatedRoute,
     private readonly _toaster: NbToastrService,
     private readonly _articleService: ArticleService,
+    private readonly _dialogService: NbDialogService,
   ){
     this._translateService.use(this._languageService.myLanguage);
   }
 
   ngOnInit(): void {
     this.categories = this._route.snapshot.data['category'];
+
+    // this._route.queryParams.subscribe(params => {
+    //   if(params['article']){
+    //     this.ArticleSelected  = JSON.parse(params['article']);
+        
+    //   }
+    // })
+
+    
     
     this.fg = this._formBuilder.group({
       category_id: [null, [Validators.required]],
-      user_id: [this._loginService.userConnected],
       titel_fr: [null, [Validators.required]],
       titel_en: [null, [Validators.required]],
       titel_nl: [null, [Validators.required]],
@@ -71,11 +83,77 @@ export class PostComponent implements OnInit {
   }
 
   newArticle(){
+    if(this.fg.invalid){
+      this._toaster.danger("Failed posting new article");
+      // // console.log(this.fg.value);
+      return;
+    }
+    console.log(this.fg.value);
+    const articleToAdd = {
+      id: 0,
+      category_id: this.fg.get('category_id')?.value,
+      user_id: this._loginService.userConnected.id,
+      titel_fr: this.fg.get('titel_fr')?.value,
+      titel_en: this.fg.get('titel_en')?.value,
+      titel_nl: this.fg.get('titel_nl')?.value,
+      content_fr: this.fg.get('content_fr')?.value,
+      content_en: this.fg.get('content_en')?.value,
+      content_nl: this.fg.get('content_nl')?.value,
+    }
 
+    this._articleService.createArticle(articleToAdd).subscribe({
+      next: (data) => {
+        articleToAdd.id = data.idArticleInserted;
+        this._toaster.success('New article posted !');
+        this.fg.reset();
+      },
+      error: (data) => {
+        this._toaster.danger(data.message);
+      }
+    })
   }
 
   updateArticle(){
+    if(this.fg.invalid){
+      this._toaster.danger("Failed updating article");
+    }
 
+    const articleToUpdate = {
+      id: this.articleSelected!.id,
+      category_id: this.fg.get('category_id')?.value,
+      user_id: this._loginService.userConnected.id,
+      titel_fr: this.fg.get('titel_fr')?.value,
+      titel_en: this.fg.get('titel_en')?.value,
+      titel_nl: this.fg.get('titel_nl')?.value,
+      content_fr: this.fg.get('content_fr')?.value,
+      content_en: this.fg.get('content_en')?.value,
+      content_nl: this.fg.get('content_nl')?.value,
+    }
+
+    this._articleService.updateArticle(articleToUpdate).subscribe({
+      next: ( _ ) => {
+        this._toaster.success('Article updated !');
+        this.fg.reset();
+      },
+      error: (data) => {
+        this._toaster.danger(data.message);
+      }
+    });
+  }
+
+  returnMain(){
+    if(this.fg.touched || this.fg.dirty){
+      const dialogRef = this._dialogService.open(ConfirmDialogComponent, {
+        context: { message: this.dialogMSG }
+      });
+      dialogRef.onClose.subscribe(reponse => {
+        if(reponse){
+          this._router.navigate(['']);
+        }
+      });
+    } else {
+      this._router.navigate(['']);
+    }
   }
 
 

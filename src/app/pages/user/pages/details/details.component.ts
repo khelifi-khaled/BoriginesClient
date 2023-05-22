@@ -187,20 +187,18 @@ export class DetailsComponent extends DestroyedComponent implements OnInit {
     }
 
     this._userService.createUser(userToAdd).subscribe({
-      next: ( data ) =>  {
-        userToAdd.id = data.IdUserInserted,
+      next: (data) =>  {
+        userToAdd.id = data.IdUserInserted;
         this._toaster.success('New user created !');
         this.fg.reset();
         //// this.userList.push(userToAdd);
         //// this._userService.saveList(this.userList);
         this.addToList(userToAdd);
       }, 
-      error: (data)  => {
+      error: (data) => {
         this._toaster.danger(data.message);
       }
-      
     });;
-    
   }
 
   updateUser(){
@@ -217,18 +215,20 @@ export class DetailsComponent extends DestroyedComponent implements OnInit {
       password: this.fg.get('password')?.value,
     }
 
-    // console.log(userToUpdate);
+    // // console.log(userToUpdate);
 
     this._userService.updateUser(userToUpdate).subscribe({
       next: ( _ ) => {
-        this._toaster.success('User updated !')
+        this._toaster.success('User updated !');
         this.fg.reset();
         this.updateList(userToUpdate);
-        // console.log(this.userList);
+        // // console.log(this.userList);
         //// this.addToList(userToUpdate);
         //// console.log(this.userList);
+      },
+      error: (data) => {
+        this._toaster.danger(data.message);
       }
-      
     });
   }
 

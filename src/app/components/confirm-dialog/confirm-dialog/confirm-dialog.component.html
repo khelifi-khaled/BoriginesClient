@@ -1,0 +1,21 @@
+<nb-card>
+    <nb-card-header>
+        <div [innerHTML]="message">
+
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <button 
+            nbButton 
+            (click)="yes()" 
+            status="success"
+            ><nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+        </button>
+        <button 
+            nbButton 
+            (click)="no()" 
+            status="danger"
+            ><nb-icon icon="close-circle-outline"></nb-icon>
+        </button>
+    </nb-card-body>
+</nb-card>

@@ -1,0 +1,15 @@
+<nb-card>
+    <nb-card-header>
+        <h3 >{{ title|uppercase }}</h3>
+        
+        <span>écrit par : {{ lastName|titlecase }} {{ firstName|titlecase }}, le {{ date|date:'dd/MM/yyyy' }}</span>
+            
+        
+    </nb-card-header>
+    <nb-card-body>
+        <p>{{ content }}</p>
+    </nb-card-body>
+    <nb-card-footer>
+
+    </nb-card-footer>
+</nb-card>

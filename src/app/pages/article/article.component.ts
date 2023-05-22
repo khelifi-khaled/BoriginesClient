@@ -1,9 +1,12 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NbDialogService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 import { takeUntil } from 'rxjs';
+import { ArticleDialogComponent } from 'src/app/components/article-dialog/article-dialog/article-dialog.component';
 import { DestroyedComponent } from 'src/app/core/destroyed.component';
 import { Article } from 'src/app/models/article.model';
+import { Post } from 'src/app/models/post.model';
 import { ArticleService } from 'src/app/services/article.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -32,6 +35,8 @@ export class ArticleComponent extends DestroyedComponent implements OnInit {
     private readonly _translateService: TranslateService,
     private readonly _loginService: LoginService,
     private readonly _languageService: LanguageService,
+    private readonly _dialogService: NbDialogService,
+    private readonly _router: Router,
   ){
     super()
     this._translateService.use(this._languageService.myLanguage);
@@ -78,12 +83,26 @@ export class ArticleComponent extends DestroyedComponent implements OnInit {
     return this._translateService.currentLang;
   }
 
-  show(){
-    
+  show(article: Article){
+    const dialogRef = this._dialogService.open(ArticleDialogComponent, {
+      context: { 
+        title: article.title, 
+        content: article.content, 
+        date: article.date,
+        firstName: article.userFirstName,
+        lastName: article.userLastName,
+      }
+    });
+
+    dialogRef.onClose.subscribe(reponse => {
+      if(reponse){
+        
+      }
+    });
   }
 
-  edit(){
-
+  edit(article: Post){
+    this._articleService.toPost(article);
   }
 
 

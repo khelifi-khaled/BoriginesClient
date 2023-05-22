@@ -3,10 +3,10 @@
         <nb-card-header class="flex">
             <div class="titre">
                 <div>
-                    <p class="title flex">{{ article.title }}</p>
+                    <p class="title flex">{{ article.title|uppercase }}</p>
                 </div>
                 <div class="written">
-                    <p>écrit par : {{ article.userLastName }} {{ article.userFirstName }}, le {{ article.date }}</p>
+                    <p>écrit par : {{ article.userLastName|titlecase }} {{ article.userFirstName|titlecase }}, le {{ article.date|date:'dd/MM/yyyy' }}</p>
                 </div>
             </div>
         </nb-card-header>
@@ -16,10 +16,10 @@
         <nb-card-footer>
             <div class="flex">
                 <div>
-                    <button nbButton status="info" (click)="show()"><nb-icon icon="eye-outline"></nb-icon> Show</button>
+                    <button nbButton status="info" (click)="show(article)"><nb-icon icon="eye-outline"></nb-icon> Show</button>
                 </div>
                 <div *ngIf="userConnected">
-                    <button nbButton status="info" (click)="edit()"><nb-icon icon="edit-outline"></nb-icon> Edit</button>
+                    <button nbButton status="info" (click)="edit(article)"><nb-icon icon="edit-outline"></nb-icon> Edit</button>
                 </div>
             </div>
         </nb-card-footer>

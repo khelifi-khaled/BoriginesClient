@@ -42,5 +42,18 @@ export class ArticleService {
     });
   }
 
+  createArticle(article: any){
+    return this._httpClient.post<any>(this.url + '/PostArticle', article, { reportProgress: true });
+  }
+
+  updateArticle(article: any){
+    return this._httpClient.put<any>(this.url + '/UpdateArticle/' + article.id, article, { reportProgress: true });
+  }
+
+  toPost(article: Post){
+    this._articleSelected$.next(article);
+    localStorage.setItem("articleSelected", JSON.stringify(article));
+  }
+
 
 }

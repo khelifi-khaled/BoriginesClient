@@ -28,6 +28,8 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { ArticleComponent } from './pages/article/article.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog/confirm-dialog.component';
+import { ArticleDialogComponent } from './components/article-dialog/article-dialog/article-dialog.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { ArticleComponent } from './pages/article/article.component';
     DetailsComponent,
     NotFoundComponent,
     LoaderComponent,
-    ArticleComponent
+    ArticleComponent,
+    ConfirmDialogComponent,
+    ArticleDialogComponent
   ],
   imports: [
     BrowserModule,
