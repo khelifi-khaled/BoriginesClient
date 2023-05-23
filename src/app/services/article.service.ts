@@ -5,6 +5,8 @@ import { Article } from '../models/article.model';
 import { BehaviorSubject } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { Post } from '../models/post.model';
+import { Router } from '@angular/router';
+import { Update } from '../models/update.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,7 @@ export class ArticleService {
   
   private _articleList$: BehaviorSubject<Article[]> = new BehaviorSubject<Article[]>([]);
 
-  private _articleSelected$: BehaviorSubject<Post|null> = new BehaviorSubject<Post|null>(null);
+  private _articleSelected$: BehaviorSubject<Update|null> = new BehaviorSubject<Update|null>(null);
 
   get articleList(){
     return this._articleList$.asObservable();
@@ -28,6 +30,7 @@ export class ArticleService {
   
   constructor(
     private readonly _httpClient: HttpClient,
+    private readonly _router: Router,
   ) { }
 
 
@@ -43,9 +46,11 @@ export class ArticleService {
   }
 
   getById(id: number){
-    return this._httpClient.get<Post>(this.url + '/GetArticleByIdEdit/' + id, { reportProgress: true })
+    return this._httpClient.get<Update>(this.url + '/GetArticleByIdEdit/' + id, { reportProgress: true })
       .subscribe(article => {
         this._articleSelected$.next(article);
+        localStorage.setItem("articleSelected", JSON.stringify(article));
+        this._router.navigate(['/post']);
       });
   }
 
@@ -57,10 +62,13 @@ export class ArticleService {
     return this._httpClient.put<any>(this.url + '/UpdateArticle/' + article.id, article, { reportProgress: true });
   }
 
-  toPost(article: Post){
-    this._articleSelected$.next(article);
-    localStorage.setItem("articleSelected", JSON.stringify(article));
+  // toPost(article: Post){
+  //   this._articleSelected$.next(article);
+  //   localStorage.setItem("articleSelected", JSON.stringify(article));
+  // }
+  removeArticleSelected() {
+    this._articleSelected$.next(null);
+    localStorage.removeItem("articleSelected");
   }
-
 
 }

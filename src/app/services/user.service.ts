@@ -62,5 +62,8 @@ export class UserService {
     return this._httpClient.post(this.url + '/checkEmail', email);
   }
 
-
+  removeUserSelected() {
+    this._userSelected$.next(null);
+    localStorage.removeItem("userSelected");
+  }
 }

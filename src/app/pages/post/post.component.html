@@ -1,3 +1,6 @@
+{{ articleSelected?.id }}
+
+
 <form [formGroup]="fg" (ngSubmit)="submit()">
     <nb-card>
         <nb-card-header>
@@ -19,14 +22,14 @@
                     <div>
                         <label>Titre français :</label>
                     </div>
-                    <input nbInput formControlName="titel_fr">
+                    <input nbInput type="text" formControlName="titel_fr">
                     <app-form-errors [control]="fg.get('titel_fr')"></app-form-errors>
                 </nb-card-header>
                 <nb-card-body>
                     <div>
                         <label>Contenu français :</label>
                     </div>
-                    <textarea formControlName="content_fr" cols="70" rows="15"></textarea>
+                    <textarea type="text" formControlName="content_fr" cols="70" rows="15"></textarea>
                     <app-form-errors [control]="fg.get('content_fr')"></app-form-errors>
                 </nb-card-body>
             </nb-card>
@@ -35,14 +38,14 @@
                     <div>
                         <label>English title :</label>
                     </div>
-                    <input nbInput formControlName="titel_en">
+                    <input nbInput type="text" formControlName="titel_en">
                     <app-form-errors [control]="fg.get('titel_en')"></app-form-errors>
                 </nb-card-header>
                 <nb-card-body>
                     <div>
                         <label>English content :</label>
                     </div>
-                    <textarea formControlName="content_en" cols="70" rows="15"></textarea>
+                    <textarea type="text" formControlName="content_en" cols="70" rows="15"></textarea>
                     <app-form-errors [control]="fg.get('content_en')"></app-form-errors>
                 </nb-card-body>
             </nb-card>
@@ -51,14 +54,14 @@
                     <div>
                         <label>Nederlandse titel :</label>
                     </div>
-                    <input nbInput formControlName="titel_nl">
+                    <input nbInput type="text" formControlName="titel_nl">
                     <app-form-errors [control]="fg.get('titel_nl')"></app-form-errors>
                 </nb-card-header>
                 <nb-card-body>
                     <div>
                         <label>Nederlandse inhoud :</label>
                     </div>
-                    <textarea formControlName="content_nl" cols="70" rows="15"></textarea>
+                    <textarea type="text" formControlName="content_nl" cols="70" rows="15"></textarea>
                     <app-form-errors [control]="fg.get('content_nl')"></app-form-errors>
                 </nb-card-body>
             </nb-card>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { NbToastrService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,7 +13,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
-export class DetailsComponent extends DestroyedComponent implements OnInit {
+export class DetailsComponent extends DestroyedComponent implements OnInit, OnDestroy {
   @ViewChild('inputElement') inputElement!: ElementRef;
 
   userSelected: User|null = null;
@@ -47,13 +47,15 @@ export class DetailsComponent extends DestroyedComponent implements OnInit {
 
     this._userService.userDetails
       .pipe(takeUntil(this.destroyed$))
-      .subscribe(user =>  {this.userSelected = user
+      .subscribe(user =>  { 
+        this.userSelected = user;
+        
         this.fg?.patchValue({
           lastName : user?.last_name,
           firstName : user?.first_name,
           email : user?.login
-        })
-      })
+        });
+      });
 
     this.fg = this._formBuilder.group({
       lastName: [null, [Validators.required, Validators.maxLength(50),]],
@@ -65,9 +67,9 @@ export class DetailsComponent extends DestroyedComponent implements OnInit {
         Validators.pattern(/^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z].{1,}$/),
         
       ]
-      ,[
-        this.emailExistsValidator
-      ]
+      // ,[
+      //   this.emailExistsValidator
+      // ]
     ],
       confirmEmail: [null, [
         Validators.required,
@@ -103,6 +105,11 @@ export class DetailsComponent extends DestroyedComponent implements OnInit {
     // });
 
 
+  }
+
+  override ngOnDestroy(): void {
+    super.ngOnDestroy();
+    this._userService.removeUserSelected();
   }
 
   match(toMatch : string): ValidatorFn {

@@ -1,37 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog/confirm-dialog.component';
+import { DestroyedComponent } from 'src/app/core/destroyed.component';
 import { Category } from 'src/app/models/category.model';
 import { Post } from 'src/app/models/post.model';
+import { map, of, takeUntil, tap } from 'rxjs';
 import { ArticleService } from 'src/app/services/article.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { LoginService } from 'src/app/services/login.service';
+import { Update } from 'src/app/models/update.model';
 
 
 @Component({
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']
 })
-export class PostComponent implements OnInit {
+export class PostComponent extends DestroyedComponent implements OnInit, OnDestroy {
 
   fg!: FormGroup;
   categories: Category[] = [];
-  articleSelected: Post|null = null;
+  articleSelected: Update|null = null;
 
   dialogMSG: string = "<h5>Your article isn't finished.</h5</br><p>Are you sure you want to leave?</p>";
 
   //get
-  get ArticleSelected(): Post|null {
+  get ArticleSelected(): Update|null {
     return JSON.parse(localStorage.getItem("articleSelected")! ?? null);
   }
 
   //set
-  set ArticleSelected(value: Post|null){
-    localStorage.setItem("articleSelected", JSON.stringify(value));
-  }
+  // set ArticleSelected(value: Post|null){
+  //   localStorage.setItem("articleSelected", JSON.stringify(value));
+  // }
   
 
   constructor(
@@ -45,31 +48,45 @@ export class PostComponent implements OnInit {
     private readonly _articleService: ArticleService,
     private readonly _dialogService: NbDialogService,
   ){
+    super();
     this._translateService.use(this._languageService.myLanguage);
   }
 
   ngOnInit(): void {
     this.categories = this._route.snapshot.data['category'];
 
-    // this._route.queryParams.subscribe(params => {
-    //   if(params['article']){
-    //     this.ArticleSelected  = JSON.parse(params['article']);
+    this._articleService.articleSelected
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(article => {
+        this.articleSelected = article;
+        console.log(this.articleSelected);
         
-    //   }
-    // })
+        this.fg?.patchValue({
+          category_id: article?.idCategory,
+          titel_fr: article?.titleFr,
+          titel_en: article?.titleEn,
+          titel_nl: article?.titleNl,
+          content_fr: article?.contentFr,
+          content_en: article?.contentEn,
+          content_nl: article?.contentNl,
+        });
+      });
 
-    
-    
-    this.fg = this._formBuilder.group({
-      category_id: [null, [Validators.required]],
-      titel_fr: [null, [Validators.required]],
-      titel_en: [null, [Validators.required]],
-      titel_nl: [null, [Validators.required]],
-      content_fr: [null, [Validators.required]],
-      content_en: [null, [Validators.required]],
-      content_nl: [null, [Validators.required]],
-    });
+      this.fg = this._formBuilder.group({
+        category_id: [null, [Validators.required]],
+        titel_fr: [null, [Validators.required]],
+        titel_en: [null, [Validators.required]],
+        titel_nl: [null, [Validators.required]],
+        content_fr: [null, [Validators.required]],
+        content_en: [null, [Validators.required]],
+        content_nl: [null, [Validators.required]],
+      });
 
+  }
+
+  override ngOnDestroy(): void {
+    super.ngOnDestroy();
+    this._articleService.removeArticleSelected();
   }
 
   submit(){
@@ -88,7 +105,7 @@ export class PostComponent implements OnInit {
       // // console.log(this.fg.value);
       return;
     }
-    console.log(this.fg.value);
+    // // console.log(this.fg.value);
     const articleToAdd = {
       id: 0,
       category_id: this.fg.get('category_id')?.value,

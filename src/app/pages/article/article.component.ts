@@ -54,7 +54,7 @@ export class ArticleComponent extends DestroyedComponent implements OnInit {
       .pipe(takeUntil(this.destroyed$))
       .subscribe(list => {
         this.articleList = list;
-        console.log(list)
+        // // console.log(list)
       });
 
       this._languageService._myLanguage$.subscribe(lang => {
@@ -102,8 +102,8 @@ export class ArticleComponent extends DestroyedComponent implements OnInit {
   }
 
   edit(id: number){
-    const article = this._articleService.getById(id);
-    // this._articleService.toPost(article);
+    this._articleService.getById(id);
+    
   }
 
 
