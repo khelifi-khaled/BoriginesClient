@@ -31,12 +31,9 @@ export class UserService {
   }
 
   getAll(){
-    // // console.log('test');
     
     return this._httpClient.get<User[]>(this.url, { reportProgress: true }).subscribe(list => {
       this._userList$.next(list);
-      // console.log('user servive :');
-      // console.log(list);
       
     });
   }

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ArticleDialogComponent } from './article-dialog.component';
 
 describe('ArticleDialogComponent', () => {

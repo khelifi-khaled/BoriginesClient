@@ -93,6 +93,7 @@ export class DetailsComponent extends DestroyedComponent implements OnInit, OnDe
       this.userList = data ;
     });
     
+    //! Async Validator
     // this.fg.get('email')?.valueChanges.pipe(
     //   debounceTime(5000)).subscribe({ 
     //     next : (value) => { 

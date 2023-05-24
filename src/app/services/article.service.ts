@@ -56,13 +56,9 @@ export class ArticleService {
       });
   }
 
-  getTest(id: number) : Observable<Article>{
+  getArticle(id: number) : Observable<Article>{
     return this._httpClient.get<Article>(this.url + '/GetArticleById/' + id + "/" + this._translateService.currentLang, { reportProgress: true })
-      // .subscribe(article => {
-      //   //this._articleSelected$.next(article);
-      //   localStorage.setItem("articleSelected", JSON.stringify(article));
-      //  // this._router.navigate(['/post']);
-      // });
+
   }
 
   createArticle(article: any){
@@ -73,10 +69,7 @@ export class ArticleService {
     return this._httpClient.put<any>(this.url + '/UpdateArticle/' + article.id, article, { reportProgress: true });
   }
 
-  // toPost(article: Post){
-  //   this._articleSelected$.next(article);
-  //   localStorage.setItem("articleSelected", JSON.stringify(article));
-  // }
+ 
   removeArticleSelected() {
     this._articleSelected$.next(null);
     localStorage.removeItem("articleSelected");

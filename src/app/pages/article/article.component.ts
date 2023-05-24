@@ -82,12 +82,6 @@ export class ArticleComponent extends DestroyedComponent implements OnInit {
     const dialogRef = this._dialogService.open(ArticleDialogComponent, {
       context: { 
         id : article.id
-        // title: article.title, 
-        // content: article.content, 
-        // date: article.date,
-        // firstName: article.userFirstName,
-        // lastName: article.userLastName,
-        //pictures: article.pictures[],
       }
     });
 

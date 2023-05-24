@@ -16,9 +16,6 @@ export class NavBarComponent {
     return this._loginService.userConnected;
   }
 
-  // test  : any | null = null ; 
-  // isMenuOpen: boolean = false;
-
   constructor(
     private readonly _translateService: TranslateService,
     private readonly _languageService : LanguageService,
