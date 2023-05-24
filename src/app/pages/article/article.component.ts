@@ -68,12 +68,6 @@ export class ArticleComponent extends DestroyedComponent implements OnInit {
       
   }
 
- 
-
-
-
-
-
   loadArticle() {
     this._articleService.getAll(this._idCategory, this.language)
 
@@ -84,13 +78,16 @@ export class ArticleComponent extends DestroyedComponent implements OnInit {
   }
 
   show(article: Article){
+    localStorage.setItem("article", JSON.stringify(article))
     const dialogRef = this._dialogService.open(ArticleDialogComponent, {
       context: { 
-        title: article.title, 
-        content: article.content, 
-        date: article.date,
-        firstName: article.userFirstName,
-        lastName: article.userLastName,
+        id : article.id
+        // title: article.title, 
+        // content: article.content, 
+        // date: article.date,
+        // firstName: article.userFirstName,
+        // lastName: article.userLastName,
+        //pictures: article.pictures[],
       }
     });
 

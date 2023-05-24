@@ -1,3 +1,5 @@
+import { Picture } from "./picture.model";
+
 export interface Update {
     id: number,
     idUser: number,
@@ -12,9 +14,4 @@ export interface Update {
     titleNl: string,
     contentNl: string,
     pictures: Picture
-}
-
-export interface Picture {
-    id: number,
-    name_picture: string
 }

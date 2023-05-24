@@ -1,0 +1,6 @@
+<div *ngIf="pictures && pictures.length > 0" class="carousel-container">
+    <img *ngFor="let picture of pictures; let i = index" 
+        [src]="picture.name_picture" alt=""
+        [ngClass]="{ 'picture-active': selectedIndex === i }"
+    >
+</div>

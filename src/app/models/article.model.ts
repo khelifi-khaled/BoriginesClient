@@ -1,3 +1,5 @@
+import { Picture } from "./picture.model";
+
 export interface Article{
     id: number,
     idUser: number,
@@ -7,4 +9,5 @@ export interface Article{
     idCategory: number,
     title: string,
     content: string,
+    pictures: Picture[],
 }

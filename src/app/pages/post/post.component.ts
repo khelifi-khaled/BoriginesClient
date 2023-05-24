@@ -61,6 +61,16 @@ export class PostComponent extends DestroyedComponent implements OnInit, OnDestr
         this.articleSelected = article;
         console.log(this.articleSelected);
         
+        this.fg = this._formBuilder.group({
+          category_id: [null, [Validators.required]],
+          titel_fr: [null, [Validators.required]],
+          titel_en: [null, [Validators.required]],
+          titel_nl: [null, [Validators.required]],
+          content_fr: [null, [Validators.required]],
+          content_en: [null, [Validators.required]],
+          content_nl: [null, [Validators.required]],
+        });
+
         this.fg?.patchValue({
           category_id: article?.idCategory,
           titel_fr: article?.titleFr,
@@ -72,17 +82,19 @@ export class PostComponent extends DestroyedComponent implements OnInit, OnDestr
         });
       });
 
-      this.fg = this._formBuilder.group({
-        category_id: [null, [Validators.required]],
-        titel_fr: [null, [Validators.required]],
-        titel_en: [null, [Validators.required]],
-        titel_nl: [null, [Validators.required]],
-        content_fr: [null, [Validators.required]],
-        content_en: [null, [Validators.required]],
-        content_nl: [null, [Validators.required]],
-      });
+      // this.fg = this._formBuilder.group({
+      //   category_id: [null, [Validators.required]],
+      //   titel_fr: [null, [Validators.required]],
+      //   titel_en: [null, [Validators.required]],
+      //   titel_nl: [null, [Validators.required]],
+      //   content_fr: [null, [Validators.required]],
+      //   content_en: [null, [Validators.required]],
+      //   content_nl: [null, [Validators.required]],
+      // });
 
   }
+
+  
 
   override ngOnDestroy(): void {
     super.ngOnDestroy();

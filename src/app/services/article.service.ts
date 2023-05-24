@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { Article } from '../models/article.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { Post } from '../models/post.model';
 import { Router } from '@angular/router';
 import { Update } from '../models/update.model';
+import { LanguageService } from './language.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,7 @@ export class ArticleService {
   constructor(
     private readonly _httpClient: HttpClient,
     private readonly _router: Router,
+    private readonly _translateService : TranslateService
   ) { }
 
 
@@ -52,6 +54,15 @@ export class ArticleService {
         localStorage.setItem("articleSelected", JSON.stringify(article));
         this._router.navigate(['/post']);
       });
+  }
+
+  getTest(id: number) : Observable<Article>{
+    return this._httpClient.get<Article>(this.url + '/GetArticleById/' + id + "/" + this._translateService.currentLang, { reportProgress: true })
+      // .subscribe(article => {
+      //   //this._articleSelected$.next(article);
+      //   localStorage.setItem("articleSelected", JSON.stringify(article));
+      //  // this._router.navigate(['/post']);
+      // });
   }
 
   createArticle(article: any){

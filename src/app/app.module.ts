@@ -30,6 +30,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { ArticleComponent } from './pages/article/article.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog/confirm-dialog.component';
 import { ArticleDialogComponent } from './components/article-dialog/article-dialog/article-dialog.component';
+import { CarouselModule } from './modules/carousel/carousel.module';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { ArticleDialogComponent } from './components/article-dialog/article-dial
     LoaderComponent,
     ArticleComponent,
     ConfirmDialogComponent,
-    ArticleDialogComponent
+    ArticleDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +69,7 @@ import { ArticleDialogComponent } from './components/article-dialog/article-dial
     NbListModule,
     NbInputModule,
     NbEvaIconsModule,
+    CarouselModule,
     NbSelectModule,
     NbDialogModule.forRoot(),
     TranslateModule.forRoot({
