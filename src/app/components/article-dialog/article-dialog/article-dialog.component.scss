@@ -1,3 +1,15 @@
 .flex {
     display: flex;
 }
+
+nb-card {
+    width: 80%;
+    min-height: 45rem;
+    max-height: 45rem;
+}
+
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
