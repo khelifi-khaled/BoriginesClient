@@ -37,13 +37,19 @@ export class ArticleService {
 
 
   getAll(idCategory: number, language: string){
-    // // const credentials = { idCategory: idCategory };
     return this._httpClient.get<Article[]>(
       this.url + '/GetAllByCategory/' + idCategory + '/' + language, 
       { reportProgress: true })
-        .subscribe(list => {
-          this._articleList$.next(list);
-     
+        .subscribe({
+          next : (list) => {
+            {
+               this._articleList$.next(list);
+            }
+        },
+        error :
+         (error) => {
+          this._articleList$.next([]);
+         }
     });
   }
 
@@ -56,9 +62,14 @@ export class ArticleService {
       });
   }
 
+<<<<<<< HEAD
   getArticle(id: number) : Observable<Article>{
     return this._httpClient.get<Article>(this.url + '/GetArticleById/' + id + "/" + this._translateService.currentLang, { reportProgress: true })
 
+=======
+  getTest(id: number) : Observable<Article>{
+    return this._httpClient.get<Article>(this.url + '/GetArticleById/' + id + "/" + this._translateService.currentLang, { reportProgress: true });
+>>>>>>> khaledDev
   }
 
   createArticle(article: any){
@@ -69,7 +80,11 @@ export class ArticleService {
     return this._httpClient.put<any>(this.url + '/UpdateArticle/' + article.id, article, { reportProgress: true });
   }
 
+<<<<<<< HEAD
  
+=======
+  
+>>>>>>> khaledDev
   removeArticleSelected() {
     this._articleSelected$.next(null);
     localStorage.removeItem("articleSelected");

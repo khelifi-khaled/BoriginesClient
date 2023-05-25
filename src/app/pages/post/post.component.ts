@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog/confirm-dialog.component';
 import { DestroyedComponent } from 'src/app/core/destroyed.component';
 import { Category } from 'src/app/models/category.model';
-import { takeUntil } from 'rxjs';
+import {takeUntil} from 'rxjs';
 import { ArticleService } from 'src/app/services/article.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -29,6 +29,7 @@ export class PostComponent extends DestroyedComponent implements OnInit, OnDestr
   get ArticleSelected(): Update|null {
     return JSON.parse(localStorage.getItem("articleSelected")! ?? null);
   }
+  
 
   constructor(
     private readonly _formBuilder: FormBuilder,
@@ -96,7 +97,6 @@ export class PostComponent extends DestroyedComponent implements OnInit, OnDestr
 
   newArticle(){
     if(this.fg.invalid){
-      this._toaster.danger("Failed posting new article");
       return;
     }
 
@@ -117,16 +117,13 @@ export class PostComponent extends DestroyedComponent implements OnInit, OnDestr
         articleToAdd.id = data.idArticleInserted;
         this._toaster.success('New article posted !');
         this.fg.reset();
-      },
-      error: (data) => {
-        this._toaster.danger(data.message);
       }
     })
   }
 
   updateArticle(){
     if(this.fg.invalid){
-      this._toaster.danger("Failed updating article");
+      return;
     }
 
     const articleToUpdate = {
@@ -145,9 +142,6 @@ export class PostComponent extends DestroyedComponent implements OnInit, OnDestr
       next: ( _ ) => {
         this._toaster.success('Article updated !');
         this.fg.reset();
-      },
-      error: (data) => {
-        this._toaster.danger(data.message);
       }
     });
   }

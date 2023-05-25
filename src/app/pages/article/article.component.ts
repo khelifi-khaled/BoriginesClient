@@ -36,13 +36,11 @@ export class ArticleComponent extends DestroyedComponent implements OnInit {
     private readonly _loginService: LoginService,
     private readonly _languageService: LanguageService,
     private readonly _dialogService: NbDialogService,
-    private readonly _router: Router,
   ){
     super()
     this._translateService.use(this._languageService.myLanguage);
   }
 
-  // // test : any | null = null ; 
 
   ngOnInit(): void {
     
@@ -54,18 +52,12 @@ export class ArticleComponent extends DestroyedComponent implements OnInit {
       .pipe(takeUntil(this.destroyed$))
       .subscribe(list => {
         this.articleList = list;
-        // // console.log(list)
       });
 
       this._languageService._myLanguage$.subscribe(lang => {
         this.language = lang
         this.loadArticle()
       })
-      // // this._translateService.onTranslationChange.subscribe(data => {
-      // //   this.test = data;
-      // //   console.log(this.test)
-      // // }); 
-      
   }
 
   loadArticle() {
