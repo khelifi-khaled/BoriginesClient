@@ -4,10 +4,7 @@ import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environment/environment';
 import { Router } from '@angular/router';
-<<<<<<< HEAD
 import { NbToastrService } from '@nebular/theme';
-=======
->>>>>>> khaledDev
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({

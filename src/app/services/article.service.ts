@@ -62,14 +62,9 @@ export class ArticleService {
       });
   }
 
-<<<<<<< HEAD
   getArticle(id: number) : Observable<Article>{
     return this._httpClient.get<Article>(this.url + '/GetArticleById/' + id + "/" + this._translateService.currentLang, { reportProgress: true })
 
-=======
-  getTest(id: number) : Observable<Article>{
-    return this._httpClient.get<Article>(this.url + '/GetArticleById/' + id + "/" + this._translateService.currentLang, { reportProgress: true });
->>>>>>> khaledDev
   }
 
   createArticle(article: any){
@@ -80,11 +75,7 @@ export class ArticleService {
     return this._httpClient.put<any>(this.url + '/UpdateArticle/' + article.id, article, { reportProgress: true });
   }
 
-<<<<<<< HEAD
  
-=======
-  
->>>>>>> khaledDev
   removeArticleSelected() {
     this._articleSelected$.next(null);
     localStorage.removeItem("articleSelected");
