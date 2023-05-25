@@ -1,13 +1,11 @@
 import { Picture } from "./picture.model";
 
-export interface Article{
-    id: number;
-    idUser: number;
+export interface Album {
+    albumId: number;
+    userId: number;
     userLastName: string;
     userFirstName: string;
     date: Date;
-    idCategory: number;
     title: string;
-    content: string;
     pictures: Picture[];
 }

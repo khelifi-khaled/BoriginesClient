@@ -2,6 +2,7 @@
     <img *ngFor="let picture of pictures; let i = index" 
         [src]="picture.name_picture" alt=""
         [ngClass]="{ 'picture-active': selectedIndex === i }"
+        class="fade"
     >
 
     <div *ngIf="indicators" class="carousel-dot-container">
@@ -12,4 +13,12 @@
             >
         </span>
     </div>
+
+    <button *ngIf="controls" class="btn-carousel btn-prev">
+        <i class="fas fa-arrow-circle-left icon-carousel icon-prev" (click)="onPrevClick()"></i>
+    </button>
+
+    <button *ngIf="controls" class="btn-carousel btn-next">
+        <i class="fas fa-arrow-circle-right icon-carousel icon-next" (click)="onNextClick()"></i>
+    </button>
 </div>

@@ -1,6 +1,9 @@
 <nb-card *ngIf="articleSelected">
     <nb-card-header>
-        <h3 >{{ articleSelected.title|uppercase }}</h3>
+        <div class="flex between">
+            <h3 >{{ articleSelected.title|uppercase }}</h3>
+            <button nbButton (click)="close()" type="button" size="small" status="danger"><nb-icon icon="close-outline"></nb-icon></button>
+        </div>
         
         <span>écrit par : {{ articleSelected.userLastName|titlecase }} {{ articleSelected.userFirstName|titlecase }}, le {{ articleSelected.date|date:'dd/MM/yyyy' }}</span>
             

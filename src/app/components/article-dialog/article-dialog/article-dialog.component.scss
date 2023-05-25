@@ -2,10 +2,14 @@
     display: flex;
 }
 
+.between {
+    justify-content: space-between;
+}
+
 nb-card {
-    width: 80%;
+    width: 75%;
     min-height: 45rem;
-    max-height: 45rem;
+    max-height: 47rem;
 }
 
 :host {

@@ -1,1 +1,19 @@
-<p>album works!</p>
+<div *ngFor="let album of albumList; let i=index">
+    <p>{{ album.title }}</p>
+    <!-- <div class="card flex justify-content-center">
+        <button pButton type="button" icon="pi pi-external-link" label="Show" (click)="showAlbum = true"></button>
+        <p-galleria [(value)]="album.pictures" [(visible)]="showAlbum" [responsiveOptions]="responsiveOptions" [containerStyle]="{'max-width': '50%'}" [numVisible]="9"
+            [circular]="true" [fullScreen]="true" [showItemNavigators]="true">
+            <ng-template pTemplate="item" let-item>
+                <img [src]="item.itemImageSrc" style="width: 100%; display: block;"/>
+            </ng-template>
+            <ng-template pTemplate="thumbnail" let-item>
+                <div class="grid grid-nogutter justify-content-center">
+                    <img [src]="item.thumbnailImageSrc" style="display: block;"/>
+                </div>
+            </ng-template>
+        </p-galleria>
+    </div> -->
+
+</div>
+

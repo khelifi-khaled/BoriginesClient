@@ -4,10 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Article } from '../models/article.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { Post } from '../models/post.model';
 import { Router } from '@angular/router';
 import { Update } from '../models/update.model';
-import { LanguageService } from './language.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -42,9 +41,7 @@ export class ArticleService {
       { reportProgress: true })
         .subscribe({
           next : (list) => {
-            {
-               this._articleList$.next(list);
-            }
+            this._articleList$.next(list);
         },
         error :
          (error) => {
