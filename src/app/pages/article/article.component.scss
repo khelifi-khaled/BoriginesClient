@@ -24,6 +24,8 @@
     margin: 1.5rem 8rem;
     font-size: 1.1rem;
     font-family: 'Roboto', sans-serif;
+    max-height: 5rem;
+    overflow: hidden;
 }
 
 .titre {
@@ -40,4 +42,8 @@
 
 button {
     margin-right: 10px;
+}
+
+.hidden {
+    color: #1E90FF;
 }

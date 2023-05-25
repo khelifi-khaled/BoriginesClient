@@ -68,7 +68,7 @@ export class DetailsComponent extends DestroyedComponent implements OnInit, OnDe
         
       ]
       // ,[
-      //   this.emailExistsValidator
+      //!   this.emailExistsValidator
       // ]
     ],
       confirmEmail: [null, [

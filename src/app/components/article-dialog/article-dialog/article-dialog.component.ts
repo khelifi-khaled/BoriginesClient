@@ -24,10 +24,13 @@ export class ArticleDialogComponent extends DestroyedComponent implements OnInit
 
   ngOnInit(): void {
         
-    this._articleService.getArticle(this.id).subscribe(
-      (article : Article) =>  {
-      this.articleSelected = article
-      console.log(article) }
+    this._articleService
+      .getArticle(this.id)
+      .subscribe(
+        (article : Article) =>  {
+          this.articleSelected = article
+          // // console.log(article)
+        }
     )
   };
 

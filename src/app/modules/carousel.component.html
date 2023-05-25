@@ -3,4 +3,13 @@
         [src]="picture.name_picture" alt=""
         [ngClass]="{ 'picture-active': selectedIndex === i }"
     >
+
+    <div *ngIf="indicators" class="carousel-dot-container">
+        <span *ngFor="let dot of pictures; let i=index" 
+            class="dot"
+            [ngClass]="{'active': selectedIndex === i}"
+            (click)="selectPicture(i)"
+            >
+        </span>
+    </div>
 </div>

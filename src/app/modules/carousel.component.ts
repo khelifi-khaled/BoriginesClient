@@ -9,11 +9,16 @@ import { Picture } from '../models/picture.model';
 export class CarouselComponent implements OnInit {
 
   @Input() pictures: Picture[] = [];
+  @Input() indicators = true;
 
   selectedIndex: number = 0;
 
   ngOnInit(): void {
     
+  }
+
+  selectPicture(index: number): void{
+    this.selectedIndex = index;
   }
 
 }
