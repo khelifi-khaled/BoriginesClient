@@ -20,7 +20,7 @@ export class ErrorInterceptor implements HttpInterceptor {
       
       switch (xhr.status){
         case 400: 
-          this._toaster.danger('Check your datas');  
+          this._toaster.danger(xhr.error.message);  
         break;
         case 401:
           this._toaster.danger('You are not authorized to do this operation');
@@ -31,14 +31,13 @@ export class ErrorInterceptor implements HttpInterceptor {
         case 404: 
           this._toaster.danger(xhr.error.message);
           break;
-        case 418:
-          this._toaster.danger('I\'m a teapot');
+        case 500:
+          this._toaster.danger('You have error server, you need to contact technical support please');
           break;
         default:
           this._toaster.danger('Something went wrong...');
           break;
       };
-      console.log(xhr);
       
       throw new Error(xhr);
     }));
