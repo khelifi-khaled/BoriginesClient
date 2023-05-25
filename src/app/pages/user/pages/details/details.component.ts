@@ -67,9 +67,7 @@ export class DetailsComponent extends DestroyedComponent implements OnInit, OnDe
         Validators.pattern(/^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z].{1,}$/),
         
       ]
-      // ,[
-      //   this.emailExistsValidator
-      // ]
+
     ],
       confirmEmail: [null, [
         Validators.required,
@@ -93,18 +91,6 @@ export class DetailsComponent extends DestroyedComponent implements OnInit, OnDe
       this.userList = data ;
     });
     
-    // this.fg.get('email')?.valueChanges.pipe(
-    //   debounceTime(5000)).subscribe({ 
-    //     next : (value) => { 
-    //       this.fg.get('email')?.addAsyncValidators([
-    //         this.emailExistsValidator(this._userService)
-    //       ]); 
-    //     }, 
-    //     complete : () => { this.fg.get('email')?.clearAsyncValidators(); 
-    //   } 
-    // });
-
-
   }
 
   override ngOnDestroy(): void {
@@ -128,23 +114,7 @@ export class DetailsComponent extends DestroyedComponent implements OnInit, OnDe
     }
   }
 
-  // emailExistsValidator = (service: UserService): AsyncValidatorFn => {
-  //    return (control: AbstractControl): Promise<ValidationErrors | null> => { 
-  //     const Email = { EmailToCheck: control.value }; 
-  //     return new Promise<ValidationErrors | null>((resolve, reject) => { 
-  //       if (!Email.EmailToCheck) { 
-  //         resolve(null); 
-  //         return; 
-  //       } 
-  //       service.checkEmail(Email).pipe(
-  //         tap((resp : any) => this.test = resp),
-  //         map((response: any) => {
-  //            response.isEmailExist ? {emailExistsValidator : true} : null
-  //         } 
-  //          ) ).subscribe((result)=>resolve, reject)
-  //       }); 
-  //     }; 
-  //   };
+
 
   emailExistsValidator() : AsyncValidatorFn | null {
     return (control : AbstractControl) => {
@@ -181,7 +151,6 @@ export class DetailsComponent extends DestroyedComponent implements OnInit, OnDe
 
   newUser(){
     if(this.fg.invalid){
-      this._toaster.danger("Failed adding new user");
       return;
     }
 
@@ -198,19 +167,13 @@ export class DetailsComponent extends DestroyedComponent implements OnInit, OnDe
         userToAdd.id = data.IdUserInserted;
         this._toaster.success('New user created !');
         this.fg.reset();
-        //// this.userList.push(userToAdd);
-        //// this._userService.saveList(this.userList);
         this.addToList(userToAdd);
-      }, 
-      error: (data) => {
-        this._toaster.danger(data.message);
       }
     });;
   }
 
   updateUser(){
     if(this.fg.invalid){
-      this._toaster.danger("Failed updating user");
       return;
     }
 
@@ -222,19 +185,13 @@ export class DetailsComponent extends DestroyedComponent implements OnInit, OnDe
       password: this.fg.get('password')?.value,
     }
 
-    // // console.log(userToUpdate);
+
 
     this._userService.updateUser(userToUpdate).subscribe({
       next: ( _ ) => {
         this._toaster.success('User updated !');
         this.fg.reset();
         this.updateList(userToUpdate);
-        // // console.log(this.userList);
-        //// this.addToList(userToUpdate);
-        //// console.log(this.userList);
-      },
-      error: (data) => {
-        this._toaster.danger(data.message);
       }
     });
   }

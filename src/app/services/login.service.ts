@@ -4,8 +4,6 @@ import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environment/environment';
 import { Router } from '@angular/router';
-import { NbToastrService } from '@nebular/theme';
-import { LanguageService } from './language.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
@@ -30,23 +28,19 @@ export class LoginService {
   constructor(
     private readonly _httpClient: HttpClient,
     private readonly _router: Router,
-    private readonly _toaster: NbToastrService,
     private readonly _translateService: TranslateService,
   ) { }
 
   getUser(login: string, password: string){
     const credentials = { login: login, password: password };
     return this._httpClient.post<any>(environment.baseApi + 'User/Login', credentials,
-    { reportProgress: true }).subscribe(
-      user => {
-        if(user){
-          localStorage.setItem('userConnected', JSON.stringify(user));
-          this._isConnectedSubject$.next(this.userConnected);
-          this.getToken(login, password);
-          this._router.navigate(['main']);
-        } else {
-          this._toaster.danger('Login/Mot de passe incorrect !');
-        }
+    { reportProgress: true }).subscribe({
+      next : (user) => {
+            localStorage.setItem('userConnected', JSON.stringify(user));
+            this._isConnectedSubject$.next(this.userConnected);
+            this.getToken(login, password);
+            this._router.navigate(['main']);
+      }
     });
   }
 

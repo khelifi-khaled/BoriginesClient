@@ -29,7 +29,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           this._toaster.danger('You are not allowed to do this operation');
           break;
         case 404: 
-          this._toaster.danger('Resource not found');
+          this._toaster.danger(xhr.error.message);
           break;
         case 418:
           this._toaster.danger('I\'m a teapot');
@@ -38,6 +38,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           this._toaster.danger('Something went wrong...');
           break;
       };
+      console.log(xhr);
       
       throw new Error(xhr);
     }));

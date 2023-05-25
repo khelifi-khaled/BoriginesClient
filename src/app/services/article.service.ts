@@ -37,13 +37,19 @@ export class ArticleService {
 
 
   getAll(idCategory: number, language: string){
-    // // const credentials = { idCategory: idCategory };
     return this._httpClient.get<Article[]>(
       this.url + '/GetAllByCategory/' + idCategory + '/' + language, 
       { reportProgress: true })
-        .subscribe(list => {
-          this._articleList$.next(list);
-     
+        .subscribe({
+          next : (list) => {
+            {
+               this._articleList$.next(list);
+            }
+        },
+        error :
+         (error) => {
+          this._articleList$.next([]);
+         }
     });
   }
 
@@ -57,12 +63,7 @@ export class ArticleService {
   }
 
   getTest(id: number) : Observable<Article>{
-    return this._httpClient.get<Article>(this.url + '/GetArticleById/' + id + "/" + this._translateService.currentLang, { reportProgress: true })
-      // .subscribe(article => {
-      //   //this._articleSelected$.next(article);
-      //   localStorage.setItem("articleSelected", JSON.stringify(article));
-      //  // this._router.navigate(['/post']);
-      // });
+    return this._httpClient.get<Article>(this.url + '/GetArticleById/' + id + "/" + this._translateService.currentLang, { reportProgress: true });
   }
 
   createArticle(article: any){
@@ -73,10 +74,7 @@ export class ArticleService {
     return this._httpClient.put<any>(this.url + '/UpdateArticle/' + article.id, article, { reportProgress: true });
   }
 
-  // toPost(article: Post){
-  //   this._articleSelected$.next(article);
-  //   localStorage.setItem("articleSelected", JSON.stringify(article));
-  // }
+  
   removeArticleSelected() {
     this._articleSelected$.next(null);
     localStorage.removeItem("articleSelected");

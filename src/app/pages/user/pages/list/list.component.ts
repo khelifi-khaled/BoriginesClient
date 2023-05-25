@@ -28,8 +28,6 @@ export class ListComponent extends DestroyedComponent implements OnInit {
     this._userService.userList
       .pipe(takeUntil(this.destroyed$))
       .subscribe(list => {
-        // // console.log('List Component :')
-        // // console.log(list)
         this.userList = list;
       });
   }
