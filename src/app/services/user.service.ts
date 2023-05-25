@@ -31,17 +31,10 @@ export class UserService {
   }
 
   getAll(){
-<<<<<<< HEAD
-    
-    return this._httpClient.get<User[]>(this.url, { reportProgress: true }).subscribe(list => {
-      this._userList$.next(list);
-      
-=======
     return this._httpClient.get<User[]>(this.url, { reportProgress: true }).subscribe({
       next : (list) => {
           this._userList$.next(list); 
       }   
->>>>>>> khaledDev
     });
   }
 
