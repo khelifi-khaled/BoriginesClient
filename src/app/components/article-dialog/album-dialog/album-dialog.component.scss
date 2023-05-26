@@ -1,0 +1,21 @@
+.flex {
+    display: flex;
+}
+
+.between {
+    justify-content: space-between;
+}
+
+nb-card {
+    width: 100%;
+}
+
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel {
+    width: 20rem;
+}

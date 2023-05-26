@@ -10,8 +10,7 @@ import { ArticleService } from 'src/app/services/article.service';
   styleUrls: ['./article-dialog.component.scss']
 })
 export class ArticleDialogComponent extends DestroyedComponent implements OnInit {
-  @Input() 
-  id!: number
+  @Input() id!: number
 
   articleSelected!: Article;
 

@@ -32,6 +32,7 @@ import { GalleriaModule } from 'primeng/galleria';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog/confirm-dialog.component';
 import { ArticleDialogComponent } from './components/article-dialog/article-dialog/article-dialog.component';
 import { CarouselModule } from './modules/carousel/carousel.module';
+import { AlbumDialogComponent } from './components/article-dialog/album-dialog/album-dialog.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { CarouselModule } from './modules/carousel/carousel.module';
     ArticleComponent,
     ConfirmDialogComponent,
     ArticleDialogComponent,
+    AlbumDialogComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environment/environment';
-import { LanguageService } from './language.service';
 import { BehaviorSubject } from 'rxjs';
 import { Album } from '../models/album.model';
 
@@ -16,19 +14,19 @@ export class AlbumService {
   private _albumList$: BehaviorSubject<Album[]> = new BehaviorSubject<Album[]>([]);
 
   private _albumSelected$: BehaviorSubject<Album|null> = new BehaviorSubject<Album|null>(null);
+
+
   
   get albumList(){
     return this._albumList$.asObservable();
   }
 
-  get _albumSelected(){
+  get albumSelected$(){
     return this._albumSelected$.asObservable();
   }
 
   constructor(
     private readonly _httpClient: HttpClient,
-    //? private readonly _translateService: TranslateService,
-    //? private readonly _languageService: LanguageService,
   ) {
     this.getAll();
    }
@@ -72,6 +70,12 @@ export class AlbumService {
   removeAlbumSelected(){
     this._albumSelected$.next(null);
     localStorage.removeItem("albumSelected");
+  }
+
+
+  SaveAlbumSelected (album : Album) {
+    localStorage.setItem("albumSelected", JSON.stringify(album));
+    this._albumSelected$.next(album);
   }
 
 

@@ -7,5 +7,5 @@ export interface Album {
     userFirstName: string;
     date: Date;
     title: string;
-    pictures: Picture[];
+    pictures: Picture [];
 }

@@ -1,0 +1,122 @@
+
+.Projects {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+ }
+
+
+  .Projects .content {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .P-cart {
+    background-color: #fff;
+    border: 2px solid gray;
+    min-height: 14em;
+    width: 20em;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 20px;
+    transition: 0.7s ease;
+  }
+
+  .title {
+    font-size: 1.2rem;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  .posted {
+    width: 100%;
+    text-align: end;
+    padding-right: 10px;
+    margin-top: -0.5rem;
+  }
+
+  .date {
+    width: 100%;
+    text-align: end;
+    padding-right: 10px;
+    margin-top: -1.3rem;
+  }
+
+  .txt {
+    font-size: 0.8rem;
+  }
+
+  .flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+
+  .P-cart:hover {
+    transform: scale(1.1);
+  }
+  .P-cart:hover .p-img {
+    opacity: 0.8;
+  }
+  
+  .p-img img {
+    width: 100%;
+    padding: 0;
+    margin-bottom: -10px;
+    border-radius: 15px;
+  }
+
+
+  .div-filtre {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+   }
+
+   .group-radio1{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+   }
+
+   .group-radio2{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+   }
+
+
+
+   @media(max-width: 500px) {
+    .div-filtre {
+      height: 150px !important;
+      width: 100%;
+    }
+    .group-radio1{
+      height: 100%;
+      width: 150px;
+      display: flex;
+      flex-direction: column;
+      
+    }
+    .group-radio2{
+      height: 100%;
+      width: 150px;
+      display: flex;
+      flex-direction: column;
+    }
+   }
+
