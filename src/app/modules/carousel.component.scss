@@ -102,3 +102,9 @@
 .icon-prev {
     font-size: 35px;
 }
+
+@media(max-width: 920px) {
+    .carousel-container{
+        width: 100%;
+    }
+}

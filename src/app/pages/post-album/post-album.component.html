@@ -1,0 +1,29 @@
+<form [formGroup]="fg" (ngSubmit)="submit()">
+    <nb-card>
+        <nb-card-header>
+    
+        </nb-card-header>
+        <nb-card-body>
+            <nb-card>
+                <nb-card-header>
+                    <div>
+                        <label>Titre album :</label>
+                    </div>
+                    <input nbInput type="text" formControlName="title">
+                    <app-form-errors [control]="fg.get('title')"></app-form-errors>
+                </nb-card-header>
+                <nb-card-body>
+                    <div>
+                        <label>Photos :</label>
+                    </div>
+                </nb-card-body>
+            </nb-card>
+        </nb-card-body>
+        <nb-card-footer>
+            <div>
+                <button nbButton status="success" type="submit"><nb-icon icon="checkmark-outline"></nb-icon> Confirm</button>
+                <button nbButton status="danger" type="button" (click)="returnMain()"><nb-icon icon="close-circle-outline"></nb-icon> Cancel</button>
+            </div>
+        </nb-card-footer>
+    </nb-card>
+</form>

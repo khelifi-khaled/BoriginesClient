@@ -9,6 +9,7 @@ import { UserComponent } from './pages/user/user.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ArticleComponent } from './pages/article/article.component';
 import { CategoryResolver } from './resolvers/category.resolver';
+import { PostAlbumComponent } from './pages/post-album/post-album.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'post', component: PostComponent,
     resolve: { category: CategoryResolver } },
   { path: 'album', component: AlbumComponent },
+  { path: 'post-album', component: PostAlbumComponent },
   { path: 'user', component: UserComponent },
   { path: 'article', component: ArticleComponent },
 

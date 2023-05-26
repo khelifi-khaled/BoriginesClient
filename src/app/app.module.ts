@@ -33,6 +33,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { ArticleDialogComponent } from './components/article-dialog/article-dialog/article-dialog.component';
 import { CarouselModule } from './modules/carousel/carousel.module';
 import { AlbumDialogComponent } from './components/article-dialog/album-dialog/album-dialog.component';
+import { PostAlbumComponent } from './pages/post-album/post-album.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { AlbumDialogComponent } from './components/article-dialog/album-dialog/a
     ConfirmDialogComponent,
     ArticleDialogComponent,
     AlbumDialogComponent,
+    PostAlbumComponent,
   ],
   imports: [
     BrowserModule,

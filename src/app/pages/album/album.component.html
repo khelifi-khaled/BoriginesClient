@@ -5,17 +5,18 @@
         <strong class="title">
           {{ album.title|uppercase }}
         </strong>
+       
+        <div class="p-img">
+          <img [src]="album.pictures[0].name_picture"/>
+        </div>
+        
+        
         <div class="posted">
           <p class="txt">posted by: {{ album.userLastName }} {{ album.userFirstName }}</p>
         </div>
         <div class="date">
           <p class="txt">date: {{ album.date|date:'dd/MM/yyyy' }}</p>
         </div>
-       
-        <div class="p-img">
-          <img [src]="album.pictures[0].name_picture"/>
-        </div>
-
       </div>
  
    

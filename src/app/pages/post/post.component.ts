@@ -53,7 +53,7 @@ export class PostComponent extends DestroyedComponent implements OnInit, OnDestr
       .pipe(takeUntil(this.destroyed$))
       .subscribe(article => {
         this.articleSelected = article;
-        console.log(this.articleSelected);
+        // // console.log(this.articleSelected);
         
         this.fg = this._formBuilder.group({
           category_id: [null, [Validators.required]],

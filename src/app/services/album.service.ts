@@ -47,8 +47,8 @@ export class AlbumService {
         });
   }
 
-  postAlbum(){
-
+  postAlbum(album: any){
+    return this._httpClient.post<any>(this.url + '/PostAlbum', album, { reportProgress: true });
   }
 
   postPicture(id: number){
