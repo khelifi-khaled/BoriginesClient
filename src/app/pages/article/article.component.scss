@@ -28,9 +28,28 @@
     overflow: hidden;
 }
 
-.titre {
-    display: flex;
+.txt {
+    font-size: 0.8rem;
+}
+
+.date {
+    width: 100%;
+    text-align: end;
+    padding-right: 10px;
+    margin-top: -1rem;
+    margin-bottom: -1.5rem;
+  }
+
+.posted {
+    width: 100%;
+    text-align: end;
+    padding-right: 10px;
+    // margin-top: -0.5rem;
+}
+
+.header {
     flex-direction: column;
+    width: 100%;
 }
 
 .written {

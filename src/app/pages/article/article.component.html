@@ -1,17 +1,20 @@
 <div class="content" *ngIf="articleList">
     <nb-card class="card" *ngFor="let article of articleList">
         <nb-card-header class="flex">
-            <div class="titre">
+            <div class="header">
                 <div>
-                    <p class="title flex">{{ article.title|uppercase }}</p>
+                    <strong class="title flex">{{ article.title|uppercase }}</strong>
                 </div>
-                <div class="written">
-                    <p>écrit par : {{ article.userLastName|titlecase }} {{ article.userFirstName|titlecase }}, le {{ article.date|date:'dd/MM/yyyy' }}</p>
+                <div class="posted">
+                    <p class="txt">posted by: {{ article.userLastName }} {{ article.userFirstName }}</p>
+                </div>
+                <div class="date">
+                    <p class="txt">date: {{ article.date|date:'dd/MM/yyyy' }}</p>
                 </div>
             </div>
         </nb-card-header>
         <nb-card-body>
-            <p class="text">{{ article.content }}</p><span class="text">[ ... ]</span>
+            <p class="text">{{ article.content }}</p><span class="text hidden">[ ... ]</span>
         </nb-card-body>
         <nb-card-footer>
             <div class="flex">
