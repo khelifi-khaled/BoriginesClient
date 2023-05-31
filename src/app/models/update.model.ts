@@ -13,5 +13,5 @@ export interface Update {
     contentEn: string;
     titleNl: string;
     contentNl: string;
-    pictures: Picture;
+    pictures: Picture [];
 }

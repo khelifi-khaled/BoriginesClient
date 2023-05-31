@@ -5,10 +5,14 @@
                 <div>
                     <label>Category :</label>
                 </div>
-                <nb-select formControlName="category_id" placeholder="Choose a category *">
-                    <nb-option *ngFor="let category of categories" 
-                        [value]="category.id" 
-                        >{{ category.name_Category }}</nb-option>
+                <nb-select formControlName="category_id" placeholder="Choose a category *"  >
+                    <nb-option 
+                        *ngFor="let category of categories" 
+                        [value]="category.id"
+
+                        >
+                        {{ category.name_Category }}
+                    </nb-option>
                 </nb-select>
                 <app-form-errors [control]="fg.get('category_id')"></app-form-errors>
             </div>
@@ -19,14 +23,14 @@
                     <div>
                         <label>Titre français :</label>
                     </div>
-                    <input nbInput type="text" formControlName="titel_fr">
+                    <input nbInput type="text" formControlName="titel_fr" [value]="ArticleSelected?.titleFr" >
                     <app-form-errors [control]="fg.get('titel_fr')"></app-form-errors>
                 </nb-card-header>
                 <nb-card-body>
                     <div>
                         <label>Contenu français :</label>
                     </div>
-                    <textarea type="text" formControlName="content_fr" cols="70" rows="15"></textarea>
+                    <textarea type="text" formControlName="content_fr" cols="70" rows="15" [value]="ArticleSelected?.contentFr" ></textarea>
                     <app-form-errors [control]="fg.get('content_fr')"></app-form-errors>
                 </nb-card-body>
             </nb-card>
@@ -35,14 +39,14 @@
                     <div>
                         <label>English title :</label>
                     </div>
-                    <input nbInput type="text" formControlName="titel_en">
+                    <input nbInput type="text" formControlName="titel_en" [value]="ArticleSelected?.titleEn" >
                     <app-form-errors [control]="fg.get('titel_en')"></app-form-errors>
                 </nb-card-header>
                 <nb-card-body>
                     <div>
                         <label>English content :</label>
                     </div>
-                    <textarea type="text" formControlName="content_en" cols="70" rows="15"></textarea>
+                    <textarea type="text" formControlName="content_en" cols="70" rows="15"[value]="ArticleSelected?.contentEn"></textarea>
                     <app-form-errors [control]="fg.get('content_en')"></app-form-errors>
                 </nb-card-body>
             </nb-card>
@@ -51,19 +55,40 @@
                     <div>
                         <label>Nederlandse titel :</label>
                     </div>
-                    <input nbInput type="text" formControlName="titel_nl">
+                    <input nbInput type="text" formControlName="titel_nl" [value]="ArticleSelected?.titleNl">
                     <app-form-errors [control]="fg.get('titel_nl')"></app-form-errors>
                 </nb-card-header>
                 <nb-card-body>
                     <div>
                         <label>Nederlandse inhoud :</label>
                     </div>
-                    <textarea type="text" formControlName="content_nl" cols="70" rows="15"></textarea>
+                    <textarea type="text" formControlName="content_nl" cols="70" rows="15" [value]="ArticleSelected?.contentNl"></textarea>
                     <app-form-errors [control]="fg.get('content_nl')"></app-form-errors>
                 </nb-card-body>
             </nb-card>
         </nb-card-body>
         <nb-card-footer>
+            <div class="clearfix" *ngIf="articleSelected" >
+                <img cImg 
+                *ngFor="let picture of articleSelected!.pictures"
+                align="center" 
+                height="200" 
+                rounded 
+                [src]="picture.name_picture" 
+                width="200" 
+                (click)="selectPicToDelete(picture)" />
+              </div>
+              <input type="file" (change)="handleFileInput($event)" multiple>
+              <button 
+                    nbButton 
+                    (click)="uploadPhotos(articleSelected?.id ?? 0 )" 
+                    type="button" 
+                    [disabled]="!isUpdate"
+                    >
+                    Uploader les photos
+              </button>
+
+              
             <div>
                 <button nbButton status="success" type="submit"><nb-icon icon="checkmark-outline"></nb-icon> Confirm</button>
                 <button nbButton status="danger" type="button" (click)="returnMain()"><nb-icon icon="close-circle-outline"></nb-icon> Cancel</button>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Article } from '../models/article.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
@@ -24,7 +24,7 @@ export class ArticleService {
     return this._articleList$.asObservable();
   }
 
-  get articleSelected(){
+  get articleSelected$(){
     return this._articleSelected$.asObservable();
   }
   
@@ -52,10 +52,12 @@ export class ArticleService {
 
   getById(id: number){
     return this._httpClient.get<Update>(this.url + '/GetArticleByIdEdit/' + id, { reportProgress: true })
-      .subscribe(article => {
-        this._articleSelected$.next(article);
-        localStorage.setItem("articleSelected", JSON.stringify(article));
-        this._router.navigate(['/post']);
+      .subscribe({
+        next : art => {
+            this._articleSelected$.next(art);
+            localStorage.setItem("articleSelected", JSON.stringify(art));
+            this._router.navigate(['/post']);
+        }
       });
   }
 
@@ -65,6 +67,8 @@ export class ArticleService {
   }
 
   createArticle(article: any){
+    console.log(article);
+    
     return this._httpClient.post<any>(this.url + '/PostArticle', article, { reportProgress: true });
   }
 
@@ -76,6 +80,30 @@ export class ArticleService {
   removeArticleSelected() {
     this._articleSelected$.next(null);
     localStorage.removeItem("articleSelected");
+  }
+
+
+  deletePic(id : number ,picsName : string ) {
+    const body = { name_picture: picsName };
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      
+    });
+    const options = {
+      headers: headers,
+      body: body,
+    };
+    return this._httpClient.delete(this.url+ '/DeletePicture/'+ id ,options);
+    
+  }
+
+
+   uploadpic(id : number , file : File) {
+    const formData = new FormData();
+    formData.append('PhotoFile', file);
+    //console.log( file);
+    //console.log( formData);
+    return this._httpClient.post(this.url+ '/PostPicture/'+ id ,formData) ;
   }
 
 }
