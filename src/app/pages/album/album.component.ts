@@ -27,7 +27,8 @@ export class AlbumComponent extends DestroyedComponent implements OnInit {
       .pipe(takeUntil(this.destroyed$))
       .subscribe({
         next : list => {
-          this.albumList = list;
+          this.albumList = list;  
+          
         }
       });
   }
