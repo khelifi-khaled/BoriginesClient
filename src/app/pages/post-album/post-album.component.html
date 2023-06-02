@@ -13,9 +13,7 @@
                     <app-form-errors [control]="fg.get('title')"></app-form-errors>
                 </nb-card-header>
                 <nb-card-body>
-                    <div>
-                        <label>Photos :</label>
-                    </div>
+              <input type="file" (change)="handleFileInput($event)"  multiple>
                 </nb-card-body>
             </nb-card>
         </nb-card-body>

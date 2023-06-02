@@ -18,6 +18,8 @@ export class PostAlbumComponent extends DestroyedComponent implements OnInit, On
 
   fg!: FormGroup;
   dialogMSG: string = "<h5>Your album isn't finished.</h5</br><p>Are you sure you want to leave?</p>";
+  selectedPhotos: File[] = [];
+
 
   constructor(
     private readonly _dialogService: NbDialogService,
@@ -26,7 +28,6 @@ export class PostAlbumComponent extends DestroyedComponent implements OnInit, On
     private readonly _translateService: TranslateService,
     private readonly _languageService: LanguageService,
     private readonly _loginService: LoginService,
-    private readonly _toaster: NbToastrService,
     private readonly _router: Router,
     
   ){
@@ -39,7 +40,7 @@ export class PostAlbumComponent extends DestroyedComponent implements OnInit, On
     this.fg = this._formBuilder.group({
       userId: this._loginService.userConnected.id,
       title: [null, [Validators.required]],
-    })
+    });
   }
 
   override ngOnDestroy(): void {
@@ -63,9 +64,10 @@ export class PostAlbumComponent extends DestroyedComponent implements OnInit, On
     }
 
     this._albumService.postAlbum(albumToAdd).subscribe({
-      next : (data) => {
+      next : async (data) => {
         albumToAdd.id = data.idAlbumInserted;
-        this._toaster.success('New album posted !');
+        await this.uploadPhotos(albumToAdd.id || 0);
+
         this.fg.reset();
       }
     });
@@ -85,4 +87,30 @@ export class PostAlbumComponent extends DestroyedComponent implements OnInit, On
       this._router.navigate(['']);
     }
   }
+
+//function to get selectedPhotos to add to my art 
+handleFileInput(event: any) {
+  this.selectedPhotos = event.target.files;
+}
+
+
+async uploadPhotos(id: number) {
+  if (this.selectedPhotos.length > 0) {
+    for (let i = 0; i < this.selectedPhotos.length; i++) {
+      try {
+         await this._albumService.uploadpic(id, this.selectedPhotos[i]).toPromise();
+        
+      } catch (error) {
+        console.error('Error uploading photo:', error);
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
 }

@@ -23,7 +23,7 @@ export class AlbumComponent extends DestroyedComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this._albumService.albumList
+    this._albumService.getAll()
       .pipe(takeUntil(this.destroyed$))
       .subscribe({
         next : list => {

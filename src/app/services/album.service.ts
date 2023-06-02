@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
 import { BehaviorSubject } from 'rxjs';
@@ -28,44 +28,40 @@ export class AlbumService {
   constructor(
     private readonly _httpClient: HttpClient,
   ) {
-    this.getAll();
+    
    }
 
   getAll(){
     return this._httpClient.get<Album[]>(
       this.url + '/GetAllAlbums',
-      { reportProgress: true })
-        .subscribe({
-          next: (list) => {
-            this._albumList$.next(list);
-            console.log(list);
-            
-          },
-          error: (error) => {
-            this._albumList$.next([]);
-          }
-        });
+      { reportProgress: true });
   }
 
   postAlbum(album: any){
     return this._httpClient.post<any>(this.url + '/PostAlbum', album, { reportProgress: true });
   }
 
-  postPicture(id: number){
-
+  deletePic(id : number ,picsName : string ) {
+    const body = { name_picture: picsName };
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      
+    });
+    const options = {
+      headers: headers,
+      body: body,
+    };
+    return this._httpClient.delete(this.url+ '/DeletePicture/'+ id ,options);
+    
   }
 
-  putAlbum(id: number){
 
+   uploadpic(id : number , file : File) {
+    const formData = new FormData();
+    formData.append('PhotoFile', file);
+    return this._httpClient.post(this.url+ '/PostPicture/'+ id ,formData) ;
   }
 
-  deleteAlbum(id: number){
-
-  }
-
-  deletePicture(id: number){
-
-  }
 
   removeAlbumSelected(){
     this._albumSelected$.next(null);
@@ -76,6 +72,10 @@ export class AlbumService {
   SaveAlbumSelected (album : Album) {
     localStorage.setItem("albumSelected", JSON.stringify(album));
     this._albumSelected$.next(album);
+  }
+
+  addAlbumToMainList (album  : Album []) {
+    this._albumList$.next(album);
   }
 
 

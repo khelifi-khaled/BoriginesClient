@@ -28,6 +28,7 @@ export class PostComponent extends DestroyedComponent implements OnInit, OnDestr
   picturesToDelete : string [] = [] ; 
   picturesUploadedForCancel : string [] = [];
   selectedPhotos: File[] = [];
+  //prop to detect what we are doing , if is update true otherwise false
   isUpdate : boolean = false;
   idArticleInserted : number | null = null;
 
@@ -105,30 +106,25 @@ export class PostComponent extends DestroyedComponent implements OnInit, OnDestr
   handleFileInput(event: any) {
     this.selectedPhotos = event.target.files;
   }
-
-
-  uploadPhotos(id : number) {
-    //if i have any photos 
-   if(this.selectedPhotos.length > 0 ) {
-    //for each file , post pic to server 
-    for (let i = 0; i < this.selectedPhotos.length; i++) {
-      this._articleService.uploadpic(id,this.selectedPhotos[i]).subscribe({
-        next : (url : any )=> {
+  async uploadPhotos(id: number) {
+    if (this.selectedPhotos.length > 0) {
+      for (let i = 0; i < this.selectedPhotos.length; i++) {
+        try {
+          const response: any = await this._articleService.uploadpic(id, this.selectedPhotos[i]).toPromise();
           const pic = {
-            id : 0 , 
-            name_picture : url.imageUrl
+            id: 0,
+            name_picture: response.imageUrl
           };
-          //display pic to my user 
           this.articleSelected?.pictures.push(pic);
-          //add picture name to my list , if user cancel the op , so will delete these pics 
           const picName = pic.name_picture.split('/')[4];
           this.picturesUploadedForCancel.push(picName);
+        } catch (error) {
+          console.error('Error uploading photo:', error);
         }
-      });
+      }
     }
-
-   }
   }
+
 
  
 
@@ -163,33 +159,18 @@ export class PostComponent extends DestroyedComponent implements OnInit, OnDestr
       content_en: this.fg.get('content_en')?.value,
       content_nl: this.fg.get('content_nl')?.value,
     }
-    console.log(articleToAdd);
     
     
     this._articleService.createArticle(articleToAdd).subscribe({
-      next: (data) => {
-        console.log(data);
-        
+      next: async (data) => {
         this.idArticleInserted = data.idArticleInserted;
-        this.fg.reset()
+        this.fg.reset();
+       //call this photo to uploade all pics on server
+       await this.uploadPhotos(this.idArticleInserted || 0);
       }
+    }); 
 
-    });
-
-    // {
-    //   "category_id": 1,
-    //   "user_id": 1,
-    //   "titel_fr": "string",
-    //   "titel_en": "string",
-    //   "titel_nl": "string",
-    //   "content_fr": "string",
-    //   "content_en": "string",
-    //   "content_nl": "string"
-    // }
-
-    console.log(this.idArticleInserted);
-
-
+     
      
   }
 

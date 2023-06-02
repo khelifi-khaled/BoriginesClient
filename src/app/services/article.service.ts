@@ -67,8 +67,6 @@ export class ArticleService {
   }
 
   createArticle(article: any){
-    console.log(article);
-    
     return this._httpClient.post<any>(this.url + '/PostArticle', article, { reportProgress: true });
   }
 
