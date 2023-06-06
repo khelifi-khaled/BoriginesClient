@@ -28,12 +28,13 @@ export class ArticleDialogComponent extends DestroyedComponent implements OnInit
       .subscribe(
         (article : Article) =>  {
           this.articleSelected = article
-          // // console.log(article)
+          
         }
     )
   };
 
   close(){
     this.dialogRef.close(true);
+    this._articleService.removeArticleSelected();
   }
 }
