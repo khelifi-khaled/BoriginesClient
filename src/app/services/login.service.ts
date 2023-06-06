@@ -59,6 +59,19 @@ export class LoginService {
     });
   }
 
+  isAuthenticated(){
+    return localStorage.getItem("userConnected") !== null;
+  }
+
+  isAdmin(){
+    const admin = JSON.parse(localStorage.getItem('userConnected') || 'null');
+    if(admin !== null)
+      if(admin.isAdmin)
+        return true;
+
+    return false;
+  }
+
   logout (){
     localStorage.clear();
     localStorage.setItem('myLanguage', JSON.stringify(this._translateService.currentLang));

@@ -39,7 +39,11 @@ export class PostAlbumComponent extends DestroyedComponent implements OnInit, On
     
     this.fg = this._formBuilder.group({
       userId: this._loginService.userConnected.id,
-      title: [null, [Validators.required]],
+      title: [null, [
+        Validators.required,
+        Validators.minLength(2), 
+        Validators.maxLength(100),
+        ]],
     });
   }
 

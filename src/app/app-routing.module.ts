@@ -10,17 +10,21 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ArticleComponent } from './pages/article/article.component';
 import { CategoryResolver } from './resolvers/category.resolver';
 import { PostAlbumComponent } from './pages/post-album/post-album.component';
+import { PostGuard } from './guards/post.guard';
+import { ManageGuard } from './guards/manage.guard';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'main', component: MainComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'post', component: PostComponent,
+  { path: 'post', canActivate: [PostGuard], 
+    component: PostComponent,
     resolve: { category: CategoryResolver } },
   { path: 'album', component: AlbumComponent },
-  { path: 'post-album', component: PostAlbumComponent },
-  { path: 'user', component: UserComponent },
+  { path: 'post-album', component: PostAlbumComponent, canActivate: [PostGuard] },
+  { path: 'user', component: UserComponent, canActivate: [ManageGuard]  },
   { path: 'article', component: ArticleComponent },
 
   

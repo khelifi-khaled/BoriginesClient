@@ -73,9 +73,21 @@ export class PostComponent extends DestroyedComponent implements OnInit, OnDestr
 
         this.fg = this._formBuilder.group({
           category_id: [null, [Validators.required]],
-          titel_fr: [null, [Validators.required]],
-          titel_en: [null, [Validators.required]],
-          titel_nl: [null, [Validators.required]],
+          titel_fr: [null, [
+            Validators.required, 
+            Validators.minLength(5), 
+            Validators.maxLength(100),
+          ]],
+          titel_en: [null, [
+            Validators.required, 
+            Validators.minLength(5), 
+            Validators.maxLength(100),
+          ]],
+          titel_nl: [null, [
+            Validators.required, 
+            Validators.minLength(5), 
+            Validators.maxLength(100),
+          ]],
           content_fr: [null, [Validators.required]],
           content_en: [null, [Validators.required]],
           content_nl: [null, [Validators.required]],
@@ -94,7 +106,7 @@ export class PostComponent extends DestroyedComponent implements OnInit, OnDestr
           category_id: [this.ArticleSelected?.idCategory, [Validators.required]],
           titel_fr: [this.ArticleSelected?.titleFr, [Validators.required]],
           titel_en: [this.ArticleSelected?.titleEn, [Validators.required]],
-          titel_nl: [this.ArticleSelected?.titleFr, [Validators.required]],
+          titel_nl: [this.ArticleSelected?.titleNl, [Validators.required]],
           content_fr: [this.ArticleSelected?.contentFr, [Validators.required]],
           content_en: [this.ArticleSelected?.contentEn, [Validators.required]],
           content_nl: [this.ArticleSelected?.contentNl, [Validators.required]],

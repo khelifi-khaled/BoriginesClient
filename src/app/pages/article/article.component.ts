@@ -70,7 +70,7 @@ export class ArticleComponent extends DestroyedComponent implements OnInit {
   }
 
   show(article: Article){
-    localStorage.setItem("article", JSON.stringify(article))
+    localStorage.setItem("articleSelected", JSON.stringify(article))
     const dialogRef = this._dialogService.open(ArticleDialogComponent, {
       context: { 
         id : article.id

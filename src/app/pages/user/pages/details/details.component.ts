@@ -58,10 +58,19 @@ export class DetailsComponent extends DestroyedComponent implements OnInit, OnDe
       });
 
     this.fg = this._formBuilder.group({
-      lastName: [null, [Validators.required, Validators.maxLength(50),]],
-      firstName: [null, [Validators.required, Validators.maxLength(50),]],
+      lastName: [null, [
+        Validators.required, 
+        Validators.minLength(2), 
+        Validators.maxLength(50),
+      ]],
+      firstName: [null, [
+        Validators.required, 
+        Validators.minLength(2), 
+        Validators.maxLength(50),
+      ]],
       email: [null, 
         [Validators.required,
+        Validators.minLength(5), 
         Validators.maxLength(250),
         Validators.email,
         Validators.pattern(/^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z].{1,}$/),
