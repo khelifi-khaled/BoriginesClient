@@ -1,11 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NbDialogService, NbToastrService } from '@nebular/theme';
+import { NbDialogService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog/confirm-dialog.component';
 import { DestroyedComponent } from 'src/app/core/destroyed.component';
-import { Album } from 'src/app/models/album.model';
 import { AlbumService } from 'src/app/services/album.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -72,7 +71,7 @@ export class PostAlbumComponent extends DestroyedComponent implements OnInit, On
         albumToAdd.id = data.idAlbumInserted;
         await this.uploadPhotos(albumToAdd.id || 0);
 
-        this.fg.reset();
+        this._router.navigate(['']);
       }
     });
   }

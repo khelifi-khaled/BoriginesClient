@@ -176,7 +176,7 @@ export class PostComponent extends DestroyedComponent implements OnInit, OnDestr
     this._articleService.createArticle(articleToAdd).subscribe({
       next: async (data) => {
         this.idArticleInserted = data.idArticleInserted;
-        this.fg.reset();
+        this._router.navigate(['']);
        //call this photo to uploade all pics on server
        await this.uploadPhotos(this.idArticleInserted || 0);
       }
@@ -208,7 +208,7 @@ export class PostComponent extends DestroyedComponent implements OnInit, OnDestr
     this._articleService.updateArticle(articleToUpdate).subscribe({
       next: ( msg ) => {
         this._toaster.success(msg.message);
-        this.fg.reset();
+        this._router.navigate(['']);
       }
     });
 
