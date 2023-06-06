@@ -34,7 +34,6 @@ import { ArticleDialogComponent } from './components/article-dialog/article-dial
 import { CarouselModule } from './modules/carousel/carousel.module';
 import { AlbumDialogComponent } from './components/article-dialog/album-dialog/album-dialog.component';
 import { PostAlbumComponent } from './pages/post-album/post-album.component';
-import { HashLocationStrategy , LocationStrategy } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,8 +89,6 @@ import { HashLocationStrategy , LocationStrategy } from '@angular/common';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    { provide: LocationStrategy, useClass: HashLocationStrategy, multi: true },
-
   ],
   bootstrap: [AppComponent]
 })
